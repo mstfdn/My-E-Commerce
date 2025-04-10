@@ -49,24 +49,24 @@ const PageContent = () => {
         </div>
       </div>
       
-      {/* Featured Products Grid */}
+            {/* Featured Products Grid */}
       <div className="py-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-4 md:px-0">
           {/* Large Product Card - Left */}
-          <div className="relative overflow-hidden h-[605px]">
+          <div className="relative overflow-hidden h-[300px] sm:h-[400px] md:h-[500px] lg:h-[605px] w-full">
             <img 
               src="/weekprod1.jpg" 
               alt="Featured Product" 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-center sm:object-center"
             />
-            <div className="absolute w-full bottom-0 left-0 bg-[#2D8BC0BF] bg-opacity-100 p-8 px-20  max-w-[550px]">
-              <h3 className="text-white text-2xl font-bold mb-4">
+            <div className="absolute w-full bottom-0 left-0 bg-[#2D8BC0BF] bg-opacity-100 p-4 sm:p-6 md:p-8 md:px-10 lg:px-20 max-w-full md:max-w-[550px]">
+              <h3 className="text-white text-lg sm:text-xl md:text-2xl font-bold mb-2 md:mb-4">
                 <span className="block">Top Product Of</span>
                 <span className="block">the Week</span>
               </h3>
               <Link 
                 to="/shop" 
-                className="inline-block border-2 border-white text-white font-medium py-2 px-6 rounded-md hover:bg-white hover:text-[#23A6F0] transition duration-300 mt-4 w-max"
+                className="inline-block border-2 border-white text-white font-medium py-1 px-4 sm:py-2 sm:px-6 rounded-md hover:bg-white hover:text-[#23A6F0] transition duration-300 mt-2 md:mt-4 w-max text-sm sm:text-base"
               >
                 EXPLORE ITEMS
               </Link>
@@ -74,19 +74,19 @@ const PageContent = () => {
           </div>
           
           {/* Right Column - Two Smaller Cards */}
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-4 md:gap-6 w-full">
             {/* Top Right Card */}
-            <div className="relative overflow-hidden h-[290px]">
+            <div className="relative overflow-hidden h-[200px] sm:h-[240px] md:h-[290px] w-full">
               <img 
                 src="/weekprod2.jpg" 
                 alt="Featured Product" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
               />
-              <div className="absolute w-full bottom-0 left-0 bg-[#2D8BC0BF] bg-opacity-100 p-4 max-w-[290px]">
-                <h3 className="text-white text-xl font-bold mb-2">Top Product Of the Week</h3>
+              <div className="absolute w-full bottom-0 left-0 bg-[#2D8BC0BF] bg-opacity-100 p-3 sm:p-4 max-w-full sm:max-w-[290px]">
+                <h3 className="text-white text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">Top Product Of the Week</h3>
                 <Link 
                   to="/shop" 
-                  className="inline-block border-2 border-white text-white font-medium py-2 px-6 rounded-md hover:bg-white hover:text-[#23A6F0] transition duration-300 mt-2 w-max"
+                  className="inline-block border-2 border-white text-white font-medium py-1 px-3 sm:py-2 sm:px-6 rounded-md hover:bg-white hover:text-[#23A6F0] transition duration-300 mt-1 sm:mt-2 w-max text-xs sm:text-sm md:text-base"
                 >
                   EXPLORE ITEMS
                 </Link>
@@ -94,17 +94,17 @@ const PageContent = () => {
             </div>
             
             {/* Bottom Right Card */}
-            <div className="relative overflow-hidden h-[290px]">
+            <div className="relative overflow-hidden h-[200px] sm:h-[240px] md:h-[290px] w-full">
               <img 
                 src="/weekprod3.jpg" 
                 alt="Featured Product" 
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
               />
-              <div className="absolute bottom-0 left-0 bg-[#2D8BC0BF] bg-opacity-100 p-4  max-w-[300px]">
-                <h3 className="text-white text-xl font-bold mb-2">Top Product Of the Week</h3>
+              <div className="absolute bottom-0 left-0 bg-[#2D8BC0BF] bg-opacity-100 p-3 sm:p-4 max-w-full sm:max-w-[300px]">
+                <h3 className="text-white text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">Top Product Of the Week</h3>
                 <Link 
                   to="/shop" 
-                  className="inline-block border-2 border-white text-white font-medium py-2 px-6 rounded-md hover:bg-white hover:text-[#23A6F0] transition duration-300 mt-2 w-max"
+                  className="inline-block border-2 border-white text-white font-medium py-1 px-3 sm:py-2 sm:px-6 rounded-md hover:bg-white hover:text-[#23A6F0] transition duration-300 mt-1 sm:mt-2 w-max text-xs sm:text-sm md:text-base"
                 >
                   EXPLORE ITEMS
                 </Link>
@@ -381,16 +381,17 @@ const PageContent = () => {
           </div>
         </div>
       </div>
+      
        {/* Practice Advice Section*/}
-      <div className="py-12">
+    <div className="py-12">
         <div className="text-center mb-16">
           <p className="text-[#23A6F0] font-medium mb-2">Practice Advice</p>
           <h2 className="text-3xl font-bold text-[#252B42] mb-2">Featured Posts</h2>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 px-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 px-4 sm:px-8 md:px-12 lg:px-16">
           {/* Featured Post 1 */}
-          <div className="bg-white w-[500px] rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row">
-            <div className="relative md:w-2/5">
+          <div className="bg-white w-full rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row">
+            <div className="relative md:w-2/5 h-[200px] md:h-auto">
               <img 
                 src="/grafik1.png" 
                 alt="Featured Post" 
@@ -403,25 +404,27 @@ const PageContent = () => {
                 <span className="bg-[#252B42] text-white text-xs font-bold px-2 py-1 rounded-full">⭐ 4.9</span>
               </div>
             </div>
-            <div className="p-6 md:w-3/5">
+            <div className="p-4 md:p-6 md:w-3/5">
               <div className="flex items-center mb-3">
                 <span className="text-sm text-[#23A6F0] mr-4">English Department</span>
               </div>
               <h3 className="text-xl font-bold text-[#252B42] mb-3">Graphic Design</h3>
-              <p className="text-sm text-[#737373] mb-3 ">
-                We focus on ergonomics and meeting you where you work. It's only a keystroke away.
+              <p className="text-sm  text-[#737373] mb-3">
+                We focus on ergonomics and 
+                meeting you where you work. It's 
+                only a keystroke away.
               </p>
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center">
                 <img 
                 src="/sales.png" 
                 alt="Featured Post" 
-                className="w-4 h-4 object-cover"
+                className="w-4 h-4 object-cover mr-1"
               />
                   <span className="text-sm text-[#737373]">15 Sales</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="text-sm text-[#BDBDBD] line-through mr-1">$16.48</span>
+                  <span className="text-sm text-[#BDBDBD] line-through mr-1">$16.48 </span>
                   <span className="text-sm text-[#23856D] font-bold">$6.48</span>
                 </div>
               </div>
@@ -433,8 +436,8 @@ const PageContent = () => {
                   <div className="w-4 h-4 rounded-full bg-[#252B42]"></div>
                 </div>
               </div>
-              <div className="flex items-center text-xs text-[#737373] mb-4">
-                <div className="flex items-center mr-4">
+              <div className="flex flex-wrap items-center text-xs text-[#737373] mb-4 gap-2">
+                <div className="flex items-center mr-2">
                   <img 
                     src="/22hours.png" 
                     alt="22 Hours" 
@@ -442,7 +445,7 @@ const PageContent = () => {
                   />
                   <span>22h...</span>
                 </div>
-                <div className="flex items-center mr-4">
+                <div className="flex items-center mr-2">
                   <img 
                     src="/64lesson.png" 
                     alt="64 Lessons" 
@@ -461,15 +464,15 @@ const PageContent = () => {
               </div>
               <Link 
                 to="/post" 
-                className="mt-4 inline-block text-[#23A6F0] font-medium px-4 py-2 border border-[#23A6F0] rounded-full hover:bg-[#23A6F0] hover:text-white transition-all"
+                className="mt-4 inline-block text-[#23A6F0] font-medium px-4 py-2 border border-[#23A6F0] rounded-full hover:bg-[#23A6F0] hover:text-white transition-all text-sm"
               >
                 Learn More <span className="ml-1">→</span>
               </Link>
             </div>
           </div>
           {/* Featured Post 2 */}
-          <div className="bg-white w-[500px] rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row">
-            <div className="relative md:w-2/5">
+          <div className="bg-white w-full rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row">
+            <div className="relative md:w-2/5 h-[200px] md:h-auto">
               <img 
                 src="/grafik2.png" 
                 alt="Featured Post" 
@@ -482,20 +485,22 @@ const PageContent = () => {
                 <span className="bg-[#252B42] text-white text-xs font-bold px-2 py-1 rounded-full">⭐ 4.9</span>
               </div>
             </div>
-            <div className="p-6 md:w-3/5">
+            <div className="p-4 md:p-6 md:w-3/5">
               <div className="flex items-center mb-3">
                 <span className="text-sm text-[#23A6F0] mr-4">English Department</span>
               </div>
               <h3 className="text-xl font-bold text-[#252B42] mb-3">Graphic Design</h3>
-              <p className="text-sm text-[#737373] mb-3">
-                We focus on ergonomics and meeting you where you work. It's only a keystroke away.
+              <p className="text-sm  text-[#737373] mb-3">
+                We focus on ergonomics and 
+                meeting you where you work. It's 
+                only a keystroke away.
               </p>
               <div className="flex items-center justify-between mb-4">
                 <div className="flex items-center">
                 <img 
                 src="/sales.png" 
                 alt="Featured Post" 
-                className="w-4 h-4 object-cover"
+                className="w-4 h-4 object-cover mr-1"
               />
                   <span className="text-sm text-[#737373]"> 15 Sales</span>
                 </div>
@@ -512,8 +517,8 @@ const PageContent = () => {
                   <div className="w-4 h-4 rounded-full bg-[#252B42]"></div>
                 </div>
               </div>
-              <div className="flex items-center text-xs text-[#737373] mb-4">
-                <div className="flex items-center mr-4">
+              <div className="flex flex-wrap items-center text-xs text-[#737373] mb-4 gap-2">
+                <div className="flex items-center mr-2">
                   <img 
                     src="/22hours.png" 
                     alt="22 Hours" 
@@ -521,7 +526,7 @@ const PageContent = () => {
                   />
                   <span>22h...</span>
                 </div>
-                <div className="flex items-center mr-4">
+                <div className="flex items-center mr-2">
                   <img 
                     src="/64lesson.png" 
                     alt="64 Lessons" 
@@ -540,7 +545,7 @@ const PageContent = () => {
               </div>
               <Link 
                 to="/post" 
-                className="mt-4 inline-block text-[#23A6F0] font-medium px-4 py-2 border border-[#23A6F0] rounded-full hover:bg-[#23A6F0] hover:text-white transition-all"
+                className="mt-4 inline-block text-[#23A6F0] font-medium px-4 py-2 border border-[#23A6F0] rounded-full hover:bg-[#23A6F0] hover:text-white transition-all text-sm"
               >
                 Learn More <span className="ml-1">→</span>
               </Link>
