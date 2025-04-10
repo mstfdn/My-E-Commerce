@@ -23,7 +23,7 @@ const Footer = () => {
         </div>
         
         {/* Footer Links */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-0 mb-12">
           {/* Company Info */}
           <div className="md:col-span-1">
             <h3 className="text-base font-bold text-[#252B42] mb-5">Company Info</h3>
