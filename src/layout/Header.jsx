@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <header className="w-full">
       {/* Top Bar */}
-      <div className="bg-[#252B42] text-white py-2">
+      <div className="hidden sm:block bg-[#252B42] text-white py-2">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap justify-between items-center">
             {/* Contact Info */}
