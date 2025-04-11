@@ -23,7 +23,7 @@ const Footer = () => {
         </div>
         
         {/* Footer Links */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-0 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-0 gap-y-8 mb-12">
           {/* Company Info */}
           <div className="md:col-span-1">
             <h3 className="text-base font-bold text-[#252B42] mb-5">Company Info</h3>
@@ -71,13 +71,13 @@ const Footer = () => {
           {/* Get In Touch */}
           <div className="md:col-span-1">
             <h3 className="text-base font-bold text-[#252B42] mb-5">Get In Touch</h3>
-            <div className="flex">
+            <div className="flex max-w-[250px]">
               <input 
                 type="email" 
                 placeholder="Your Email" 
-                className="px-2 py-2 border border-[#E6E6E6] rounded-l focus:outline-none"
+                className="w-full px-2 py-2 border border-[#E6E6E6] rounded-l focus:outline-none text-sm"
               />
-              <button className="bg-[#23A6F0] text-white px-4 py-3 rounded-r">
+              <button className="bg-[#23A6F0] text-white px-3 py-2 rounded-r whitespace-nowrap text-sm">
                 Subscribe
               </button>
             </div>
