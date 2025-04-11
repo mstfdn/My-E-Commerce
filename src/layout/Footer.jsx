@@ -71,7 +71,7 @@ const Footer = () => {
           {/* Get In Touch */}
           <div className="md:col-span-1">
             <h3 className="text-base font-bold text-[#252B42] mb-5">Get In Touch</h3>
-            <div className="flex max-w-[250px]">
+            <div className="flex max-w-[350px]">
               <input 
                 type="email" 
                 placeholder="Your Email" 
