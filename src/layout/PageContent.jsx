@@ -27,12 +27,8 @@ const PageContent = () => {
             <img 
               src="/hero.png" 
               alt="New Collection - Summer 2020" 
-              className="w-full h-auto object-cover object-center md:h-[500px]"
+              className="w-full h-auto object-cover object-top md:object-center md:h-[500px]"
             />
-            
-            {/* Decorative Circles */}
-            <div className="absolute top-10 right-10 w-16 h-16 bg-white rounded-full opacity-70"></div>
-            <div className="absolute top-0 right-0 w-40 h-40 bg-white rounded-full opacity-70 -mr-10"></div>
           </div>
         </div>
       </div>
@@ -126,7 +122,7 @@ const PageContent = () => {
           {/* Product 1 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product1.png" alt="Product" className="w-full h-[360px] object-cover" />
+              <img src="/product1.png" alt="Product" className="w-full h-[450px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -141,7 +137,7 @@ const PageContent = () => {
           {/* Product 2 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product2.png" alt="Product" className="w-full h-[360px] object-cover" />
+              <img src="/product2.png" alt="Product" className="w-full h-[450px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -156,7 +152,7 @@ const PageContent = () => {
           {/* Product 3 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product3.png" alt="Product" className="w-full h-[360px] object-cover" />
+              <img src="/product3.png" alt="Product" className="w-full h-[450px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -171,7 +167,7 @@ const PageContent = () => {
           {/* Product 4 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product4.png" alt="Product" className="w-full h-[360px] object-cover" />
+              <img src="/product4.png" alt="Product" className="w-full h-[450px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -186,7 +182,7 @@ const PageContent = () => {
           {/* Product 5 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product5.png" alt="Product" className="w-full h-[360px] object-cover" />
+              <img src="/product5.png" alt="Product" className="w-full h-[450px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -201,7 +197,7 @@ const PageContent = () => {
           {/* Product 6 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product6.png" alt="Product" className="w-full h-[360px] object-cover" />
+              <img src="/product6.png" alt="Product" className="w-full h-[450px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -216,7 +212,7 @@ const PageContent = () => {
           {/* Product 7 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product7.png" alt="Product" className="w-full h-[360px] object-cover" />
+              <img src="/product7.png" alt="Product" className="w-full h-[450px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -231,7 +227,7 @@ const PageContent = () => {
           {/* Product 8 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product8.png" alt="Product" className="w-full h-[360px] object-cover" />
+              <img src="/product8.png" alt="Product" className="w-full h-[450px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -246,7 +242,7 @@ const PageContent = () => {
           {/* Product 9 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product9.png" alt="Product" className="w-full h-[360px] object-cover" />
+              <img src="/product9.png" alt="Product" className="w-full h-[450px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -261,7 +257,7 @@ const PageContent = () => {
           {/* Product 10 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product10.png" alt="Product" className="w-full h-[360px] object-cover" />
+              <img src="/product10.png" alt="Product" className="w-full h-[450px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -334,12 +330,7 @@ const PageContent = () => {
           {/* Service 1 - Easy Wins */}
           <div className="flex flex-col items-center text-center">
             <div className="text-[#23A6F0] mb-5">
-              <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M42.75 22.5H58.5V38.25H42.75V22.5Z" stroke="#23A6F0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M13.5 22.5H29.25V38.25H13.5V22.5Z" stroke="#23A6F0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M13.5 51.75H29.25V67.5H13.5V51.75Z" stroke="#23A6F0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M42.75 51.75H58.5V67.5H42.75V51.75Z" stroke="#23A6F0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+              <img src="/easywins.png" alt="" />
             </div>
             <h3 className="text-xl font-bold text-[#252B42] mb-2">Easy Wins</h3>
             <p className="text-[#737373] max-w-xs">
@@ -350,15 +341,7 @@ const PageContent = () => {
           {/* Service 2 - Concrete */}
           <div className="flex flex-col items-center text-center">
             <div className="text-[#23A6F0] mb-5">
-              <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M6 24V58.587C6 58.587 19.863 58.587 36 58.587C52.137 58.587 66 58.587 66 58.587V24" stroke="#23A6F0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M66 38.8261H6" stroke="#23A6F0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M18 38.8261V58.5869" stroke="#23A6F0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M30 38.8261V58.5869" stroke="#23A6F0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M42 38.8261V58.5869" stroke="#23A6F0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M54 38.8261V58.5869" stroke="#23A6F0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M36 13.4131L66 24.0001L36 34.5871L6 24.0001L36 13.4131Z" stroke="#23A6F0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+            <img src="/concrete.png" alt="" />
             </div>
             <h3 className="text-xl font-bold text-[#252B42] mb-2">Concrete</h3>
             <p className="text-[#737373] max-w-xs">
@@ -369,10 +352,7 @@ const PageContent = () => {
           {/* Service 3 - Hack Growth */}
           <div className="flex flex-col items-center text-center">
             <div className="text-[#23A6F0] mb-5">
-              <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M65.7599 19.86L37.1999 48.42L23.9999 35.22L6.23993 52.98" stroke="#23A6F0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <path d="M65.7599 37.98V19.86H47.6399" stroke="#23A6F0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
+            <img src="/hackgrowth.png" alt="" />
             </div>
             <h3 className="text-xl font-bold text-[#252B42] mb-2">Hack Growth</h3>
             <p className="text-[#737373] max-w-xs">
