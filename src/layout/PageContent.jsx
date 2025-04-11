@@ -74,7 +74,7 @@ const PageContent = () => {
             {/* Top Right Card */}
             <div className="relative overflow-hidden h-[200px] sm:h-[240px] md:h-[290px] w-full">
               <img 
-                src="/weekprod2.jpg" 
+                src="/weekprod22.png" 
                 alt="Featured Product" 
                 className="w-full h-full object-cover object-center"
               />
@@ -92,11 +92,11 @@ const PageContent = () => {
             {/* Bottom Right Card */}
             <div className="relative overflow-hidden h-[200px] sm:h-[240px] md:h-[290px] w-full">
               <img 
-                src="/weekprod3.jpg" 
+                src="/weekprod33.png" 
                 alt="Featured Product" 
                 className="w-full h-full object-cover object-center"
               />
-              <div className="absolute bottom-0 left-0 bg-[#2D8BC0BF] bg-opacity-100 p-3 sm:p-4 max-w-full sm:max-w-[300px]">
+              <div className="absolute bottom-0 left-0 bg-[#2D8BC0BF] bg-opacity-100 p-3 sm:p-4 w-full sm:max-w-[300px]">
                 <h3 className="text-white text-base sm:text-lg md:text-xl font-bold mb-1 sm:mb-2">Top Product Of the Week</h3>
                 <Link 
                   to="/shop" 
