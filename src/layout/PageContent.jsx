@@ -126,7 +126,7 @@ const PageContent = () => {
           {/* Product 1 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product1.png" alt="Product" className="w-full h-[320px] object-cover" />
+              <img src="/product1.png" alt="Product" className="w-full h-[360px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -141,7 +141,7 @@ const PageContent = () => {
           {/* Product 2 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product2.png" alt="Product" className="w-full h-[320px] object-cover" />
+              <img src="/product2.png" alt="Product" className="w-full h-[360px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -156,7 +156,7 @@ const PageContent = () => {
           {/* Product 3 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product3.png" alt="Product" className="w-full h-[320px] object-cover" />
+              <img src="/product3.png" alt="Product" className="w-full h-[360px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -171,7 +171,7 @@ const PageContent = () => {
           {/* Product 4 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product4.png" alt="Product" className="w-full h-[320px] object-cover" />
+              <img src="/product4.png" alt="Product" className="w-full h-[360px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -186,7 +186,7 @@ const PageContent = () => {
           {/* Product 5 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product5.png" alt="Product" className="w-full h-[320px] object-cover" />
+              <img src="/product5.png" alt="Product" className="w-full h-[360px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -201,7 +201,7 @@ const PageContent = () => {
           {/* Product 6 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product6.png" alt="Product" className="w-full h-[320px] object-cover" />
+              <img src="/product6.png" alt="Product" className="w-full h-[360px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -216,7 +216,7 @@ const PageContent = () => {
           {/* Product 7 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product7.png" alt="Product" className="w-full h-[320px] object-cover" />
+              <img src="/product7.png" alt="Product" className="w-full h-[360px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -231,7 +231,7 @@ const PageContent = () => {
           {/* Product 8 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product8.png" alt="Product" className="w-full h-[320px] object-cover" />
+              <img src="/product8.png" alt="Product" className="w-full h-[360px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -246,7 +246,7 @@ const PageContent = () => {
           {/* Product 9 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product9.png" alt="Product" className="w-full h-[320px] object-cover" />
+              <img src="/product9.png" alt="Product" className="w-full h-[360px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -261,7 +261,7 @@ const PageContent = () => {
           {/* Product 10 */}
           <div className="group">
             <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product10.png" alt="Product" className="w-full h-[320px] object-cover" />
+              <img src="/product10.png" alt="Product" className="w-full h-[360px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
