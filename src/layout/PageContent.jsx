@@ -72,7 +72,7 @@ const PageContent = () => {
           {/* Right Column - Two Smaller Cards */}
           <div className="flex flex-col gap-4 md:gap-6 w-full">
             {/* Top Right Card */}
-            <div className="relative overflow-hidden h-[200px] sm:h-[240px] md:h-[290px] w-full">
+            <div className="relative overflow-hidden h-[300px] sm:h-[240px] md:h-[290px] w-full">
               <img 
                 src="/weekprod22.png" 
                 alt="Featured Product" 
@@ -90,7 +90,7 @@ const PageContent = () => {
             </div>
             
             {/* Bottom Right Card */}
-            <div className="relative overflow-hidden h-[200px] sm:h-[240px] md:h-[290px] w-full">
+            <div className="relative overflow-hidden h-[300px] sm:h-[240px] md:h-[290px] w-full">
               <img 
                 src="/weekprod33.png" 
                 alt="Featured Product" 
