@@ -77,24 +77,50 @@ const Header = () => {
             <div className="hidden md:flex items-center space-x-6">
               <Link to="/login" className="text-[#23A6F0] hover:underline">Login / Register</Link>
               <div className="flex items-center space-x-4">
-                <Link to="/search" className="text-[#23A6F0]">
+                <Link to="/search" className="text-[#737373]">
                   <Search size={20} />
                 </Link>
-                <Link to="/cart" className="text-[#23A6F0] relative">
+                <Link to="/cart" className="text-[#737373] relative">
                   <ShoppingCart size={20} />
+                  {/* 1 bildirimi 
                   <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
+                  */}
                 </Link>
-                <Link to="/wishlist" className="text-[#23A6F0] relative">
+                <Link to="/wishlist" className="text-[#737373] relative">
                   <Heart size={20} />
+                  {/* 1 bildirimi 
                   <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
+                  */}
                 </Link>
               </div>
             </div>
           </div>
           
           {/* Mobile Menu */}
+          {/* Mobile Menu */}
           {isMenuOpen && (
             <div className="md:hidden mt-4 pb-4">
+              <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-3">
+                <Link to="/login" className="text-[#23A6F0] hover:underline cursor-pointer">Login / Register</Link>
+                <div className="flex items-center space-x-5">
+                  <Link to="/search" className="text-[#737373] cursor-pointer">
+                    <Search size={20} />
+                  </Link>
+                  <Link to="/cart" className="text-[#737373] relative cursor-pointer">
+                    <ShoppingCart size={20} />
+                    {/* 1 bildirimi 
+                    <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
+                    */}
+                  </Link>
+                  <Link to="/wishlist" className="text-[#737373] relative cursor-pointer">
+                    <Heart size={20} />
+                    {/* 1 bildirimi 
+                    <span className="absolute -top-2 -right-2 bg-[#ff2929] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
+                    */}
+                  </Link>
+                </div>
+              </div>
+              
               <nav className="flex flex-col space-y-3">
                 <Link to="/" className="text-[#737373] hover:text-[#23A6F0] font-medium py-2">Home</Link>
                 <Link to="/shop" className="text-[#737373] hover:text-[#23A6F0] font-medium py-2">Shop</Link>
@@ -103,22 +129,6 @@ const Header = () => {
                 <Link to="/contact" className="text-[#737373] hover:text-[#23A6F0] font-medium py-2">Contact</Link>
                 <Link to="/pages" className="text-[#737373] hover:text-[#23A6F0] font-medium py-2">Pages</Link>
               </nav>
-              <div className="mt-4 flex flex-col space-y-3">
-                <Link to="/login" className="text-[#23A6F0] hover:underline py-2">Login / Register</Link>
-                <div className="flex items-center space-x-4 py-2">
-                  <Link to="/search" className="text-[#23A6F0]">
-                    <Search size={20} />
-                  </Link>
-                  <Link to="/cart" className="text-[#23A6F0] relative">
-                    <ShoppingCart size={20} />
-                    <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
-                  </Link>
-                  <Link to="/wishlist" className="text-[#23A6F0] relative">
-                    <Heart size={20} />
-                    <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
-                  </Link>
-                </div>
-              </div>
             </div>
           )}
         </div>
