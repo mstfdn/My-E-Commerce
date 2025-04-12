@@ -1,5 +1,4 @@
 import React from 'react';
-import Footer from '../layout/Footer';
 import ShopContent from '../layout/ShopContent';
 
 const Shop = () => {

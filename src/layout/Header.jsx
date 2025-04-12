@@ -123,12 +123,48 @@ const Header = () => {
               </div>
               
               <nav className="flex flex-col space-y-3">
-                <Link to="/" className={`${location.pathname === '/' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}>Home</Link>
-                <Link to="/shop" className={`${location.pathname === '/shop' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}>Shop</Link>
-                <Link to="/about" className={`${location.pathname === '/about' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}>About</Link>
-                <Link to="/blog" className={`${location.pathname === '/blog' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}>Blog</Link>
-                <Link to="/contact" className={`${location.pathname === '/contact' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}>Contact</Link>
-                <Link to="/pages" className={`${location.pathname === '/pages' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}>Pages</Link>
+                <Link 
+                  to="/" 
+                  className={`${location.pathname === '/' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Home
+                </Link>
+                <Link 
+                  to="/shop" 
+                  className={`${location.pathname === '/shop' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Shop
+                </Link>
+                <Link 
+                  to="/about" 
+                  className={`${location.pathname === '/about' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  About
+                </Link>
+                <Link 
+                  to="/blog" 
+                  className={`${location.pathname === '/blog' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Blog
+                </Link>
+                <Link 
+                  to="/contact" 
+                  className={`${location.pathname === '/contact' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Contact
+                </Link>
+                <Link 
+                  to="/pages" 
+                  className={`${location.pathname === '/pages' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Pages
+                </Link>
               </nav>
             </div>
           )}

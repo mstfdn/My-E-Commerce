@@ -5,7 +5,6 @@ import './assets/css/tailwind.css'
 import PageContent from './layout/PageContent'
 import Footer from './layout/Footer'
 import Shop from './pages/Shop'
-import { ChevronLeft, Heart, ShoppingCart } from 'lucide-react'
 
 const App = () => {
   return (
