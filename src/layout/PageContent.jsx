@@ -45,7 +45,7 @@ const PageContent = () => {
         </div>
       </div>
       
-            {/* Featured Products Grid */}
+      {/* Featured Products Grid */}
       <div className="py-10">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-4 md:px-0">
           {/* Large Product Card - Left */}
@@ -121,8 +121,8 @@ const PageContent = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {/* Product 1 */}
           <div className="group">
-            <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product1.png" alt="Product" className="w-full h-[450px] object-cover" />
+            <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/product1.png" alt="Product" className="w-[239px] h-[300px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -136,8 +136,8 @@ const PageContent = () => {
           
           {/* Product 2 */}
           <div className="group">
-            <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product2.png" alt="Product" className="w-full h-[450px] object-cover" />
+          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/product2.png" alt="Product" className="w-[239px] h-[300px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -151,8 +151,8 @@ const PageContent = () => {
           
           {/* Product 3 */}
           <div className="group">
-            <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product3.png" alt="Product" className="w-full h-[450px] object-cover" />
+          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/product3.png" alt="Product" className="w-[239px] h-[300px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -166,8 +166,8 @@ const PageContent = () => {
           
           {/* Product 4 */}
           <div className="group">
-            <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product4.png" alt="Product" className="w-full h-[450px] object-cover" />
+          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/product4.png" alt="Product" className="w-[239px] h-[300px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -181,8 +181,8 @@ const PageContent = () => {
           
           {/* Product 5 */}
           <div className="group">
-            <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product5.png" alt="Product" className="w-full h-[450px] object-cover" />
+          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/product5.png" alt="Product" className="w-[239px] h-[300px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -196,8 +196,8 @@ const PageContent = () => {
           
           {/* Product 6 */}
           <div className="group">
-            <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product6.png" alt="Product" className="w-full h-[450px] object-cover" />
+          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/product6.png" alt="Product" className="w-[239px] h-[300px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -211,8 +211,8 @@ const PageContent = () => {
           
           {/* Product 7 */}
           <div className="group">
-            <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product7.png" alt="Product" className="w-full h-[450px] object-cover" />
+          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/product7.png" alt="Product" className="w-[239px] h-[300px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -226,8 +226,8 @@ const PageContent = () => {
           
           {/* Product 8 */}
           <div className="group">
-            <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product8.png" alt="Product" className="w-full h-[450px] object-cover" />
+          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/product8.png" alt="Product" className="w-[239px] h-[300px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -241,8 +241,8 @@ const PageContent = () => {
           
           {/* Product 9 */}
           <div className="group">
-            <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product9.png" alt="Product" className="w-full h-[450px] object-cover" />
+          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/product9.png" alt="Product" className="w-[239px] h-[300px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -256,8 +256,8 @@ const PageContent = () => {
           
           {/* Product 10 */}
           <div className="group">
-            <div className="bg-[#F9F9F9] mb-4">
-              <img src="/product10.png" alt="Product" className="w-full h-[450px] object-cover" />
+          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/product10.png" alt="Product" className="w-[239px] h-[300px] object-cover" />
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -277,43 +277,48 @@ const PageContent = () => {
         </div>
       </div>
       {/* We Love What We Do Section */}
-      <div className="py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-          {/* Left Side - Images */}
-          <div className="grid grid-cols-2 gap-4">
-            <div className="h-[700px]">
-              <img 
-                src="/foto1.png" 
-                alt="Happy Customer" 
-                className="w-full h-full object-cover "
-              />
+      <div className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col md:flex-row items-center gap-8">
+            {/* Left Side - Images */}
+            <div className="w-full md:w-1/2">
+              <div className="flex gap-4 justify-center">
+                <div>
+                  <img 
+                    src="/foto1.png" 
+                    alt="Happy Customer" 
+                    className="w-[217px] h-[498px] object-cover"
+                  />
+                </div>
+                
+                <div>
+                  <img 
+                    src="/foto2.png" 
+                    alt="Customer with Headphones" 
+                    className="w-[280px] h-[498px] object-cover"
+                  />
+                </div>
+              </div>
             </div>
-            <div className="h-[700px]">
-              <img 
-                src="/foto2.png" 
-                alt="Customer with Headphones" 
-                className="w-full h-full object-cover "
-              />
-            </div>
-          </div>
-          
-          {/* Right Side - Content */}
-          <div className="px-4 md:px-8">
-            <p className="text-[#23A6F0] font-medium mb-2">Featured Products</p>
-            <h2 className="text-4xl font-bold text-[#252B42] mb-6">We love what we do</h2>
             
-            <div className="space-y-4">
-              <p className="text-[#737373]">
-                Problems trying to resolve the conflict between 
-                the two major realms of Classical physics: 
-                Newtonian mechanics.
-              </p>
+            {/* Right Side - Content */}
+            <div className="w-full md:w-1/2 px-4 md:px-8 mt-8 md:mt-0">
+              <p className="text-[#23A6F0] font-medium mb-2">Featured Products</p>
+              <h2 className="text-4xl font-bold text-[#252B42] mb-6">We love what we do</h2>
               
-              <p className="text-[#737373]">
-                Problems trying to resolve the conflict between 
-                the two major realms of Classical physics: 
-                Newtonian mechanics
-              </p>
+              <div className="space-y-4">
+                <p className="text-[#737373]">
+                  Problems trying to resolve the conflict between 
+                  the two major realms of Classical physics: 
+                  Newtonian mechanics.
+                </p>
+                
+                <p className="text-[#737373]">
+                  Problems trying to resolve the conflict between 
+                  the two major realms of Classical physics: 
+                  Newtonian mechanics
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -363,172 +368,150 @@ const PageContent = () => {
       </div>
       
        {/* Practice Advice Section*/}
-    <div className="py-12">
-        <div className="text-center mb-16">
-          <p className="text-[#23A6F0] font-medium mb-2">Practice Advice</p>
-          <h2 className="text-3xl font-bold text-[#252B42] mb-2">Featured Posts</h2>
-        </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 px-4 sm:px-8 md:px-12 lg:px-16">
-          {/* Featured Post 1 */}
-          <div className="bg-white w-full rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row">
-            <div className="relative md:w-2/5 h-[200px] md:h-auto">
-              <img 
-                src="/grafik1.png" 
-                alt="Featured Post" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute top-3 left-3">
-                <span className="bg-[#E74040] text-white text-xs font-bold px-2 py-1 rounded">Sale</span>
-              </div>
-              <div className="absolute top-3 right-3">
-                <span className="bg-[#252B42] text-white text-xs font-bold px-2 py-1 rounded-full">⭐ 4.9</span>
-              </div>
-            </div>
-            <div className="p-4 md:p-6 md:w-3/5">
-              <div className="flex items-center mb-3">
-                <span className="text-sm text-[#23A6F0] mr-4">English Department</span>
-              </div>
-              <h3 className="text-xl font-bold text-[#252B42] mb-3">Graphic Design</h3>
-              <p className="text-sm  text-[#737373] mb-3">
-                We focus on ergonomics and 
-                meeting you where you work. It's 
-                only a keystroke away.
-              </p>
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center">
-                <img 
-                src="/sales.png" 
-                alt="Featured Post" 
-                className="w-4 h-4 object-cover mr-1"
-              />
-                  <span className="text-sm text-[#737373]">15 Sales</span>
-                </div>
-                <div className="flex items-center">
-                  <span className="text-sm text-[#BDBDBD] line-through mr-1">$16.48 </span>
-                  <span className="text-sm text-[#23856D] font-bold">$6.48</span>
-                </div>
-              </div>
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex space-x-1">
-                  <div className="w-4 h-4 rounded-full bg-[#23A6F0]"></div>
-                  <div className="w-4 h-4 rounded-full bg-[#23856D]"></div>
-                  <div className="w-4 h-4 rounded-full bg-[#E77C40]"></div>
-                  <div className="w-4 h-4 rounded-full bg-[#252B42]"></div>
-                </div>
-              </div>
-              <div className="flex flex-wrap items-center text-xs text-[#737373] mb-4 gap-2">
-                <div className="flex items-center mr-2">
-                  <img 
-                    src="/22hours.png" 
-                    alt="22 Hours" 
-                    className="w-4 h-4 mr-1"
-                  />
-                  <span>22h...</span>
-                </div>
-                <div className="flex items-center mr-2">
-                  <img 
-                    src="/64lesson.png" 
-                    alt="64 Lessons" 
-                    className="w-4 h-4 mr-1"
-                  />
-                  <span>64 Lessons</span>
-                </div>
-                <div className="flex items-center">
-                  <img 
-                    src="/progress.png" 
-                    alt="Progress" 
-                    className="w-4 h-4 mr-1"
-                  />
-                  <span>Progress</span>
-                </div>
-              </div>
-              <Link 
-                to="/post" 
-                className="mt-4 inline-block text-[#23A6F0] font-medium px-4 py-2 border border-[#23A6F0] rounded-full hover:bg-[#23A6F0] hover:text-white transition-all text-sm"
-              >
-                Learn More <span className="ml-1">→</span>
-              </Link>
-            </div>
+      <div className="py-12 bg-white">
+        <div className="container mx-auto">
+          <div className="text-center mb-10">
+            <p className="text-[#23A6F0] font-medium mb-2">Practice Advice</p>
+            <h2 className="text-3xl font-bold text-[#252B42] mb-2">Featured Posts</h2>
           </div>
-          {/* Featured Post 2 */}
-          <div className="bg-white w-full rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row">
-            <div className="relative md:w-2/5 h-[200px] md:h-auto">
-              <img 
-                src="/grafik2.png" 
-                alt="Featured Post" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute top-3 left-3">
-                <span className="bg-[#E74040] text-white text-xs font-bold px-2 py-1 rounded">Sale</span>
+          
+          <div className="flex flex-wrap justify-center gap-8">
+            {/* Featured Post 1 */}
+            <div className="bg-white w-full max-w-[700px] rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row">
+              <div className="relative md:w-2/5">
+                <img 
+                  src="/grafik1.png" 
+                  alt="Featured Post" 
+                  className="w-full h-full object-cover min-h-[300px]"
+                />
+                <div className="absolute top-5 left-5">
+                  <span className="bg-[#E74040] text-white text-xs font-bold px-3 py-1 rounded">Sale</span>
+                </div>
+                <div className="absolute top-5 right-5">
+                  <span className="bg-[#252B42] text-white text-xs font-bold px-3 py-1 rounded-full">⭐ 4.9</span>
+                </div>
               </div>
-              <div className="absolute top-3 right-3">
-                <span className="bg-[#252B42] text-white text-xs font-bold px-2 py-1 rounded-full">⭐ 4.9</span>
+              
+              <div className="p-6 md:w-3/5">
+                <div className="flex items-center mb-3">
+                  <span className="text-sm text-[#23A6F0]">English Department</span>
+                </div>
+                <h3 className="text-xl font-bold text-[#252B42] mb-3">Graphic Design</h3>
+                <p className="text-sm text-[#737373] mb-4">
+                  We focus on ergonomics and meeting you where you work. It's only a keystroke away.
+                </p>
+                
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center">
+                    <img src="/sales.png" alt="Sales" className="w-4 h-4 object-cover mr-1" />
+                    <span className="text-sm text-[#737373]">15 Sales</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-sm text-[#BDBDBD] line-through mr-1">$16.48</span>
+                    <span className="text-sm text-[#23856D] font-bold">$6.48</span>
+                  </div>
+                </div>
+                
+                <div className="flex mb-4">
+                  <div className="flex space-x-1">
+                    <div className="w-4 h-4 rounded-full bg-[#23A6F0]"></div>
+                    <div className="w-4 h-4 rounded-full bg-[#23856D]"></div>
+                    <div className="w-4 h-4 rounded-full bg-[#E77C40]"></div>
+                    <div className="w-4 h-4 rounded-full bg-[#252B42]"></div>
+                  </div>
+                </div>
+                
+                <div className="flex flex-wrap items-center text-xs text-[#737373] mb-4 gap-2">
+                  <div className="flex items-center mr-2">
+                    <img src="/22hours.png" alt="22 Hours" className="w-4 h-4 mr-1" />
+                    <span>22h...</span>
+                  </div>
+                  <div className="flex items-center mr-2">
+                    <img src="/64lesson.png" alt="64 Lessons" className="w-4 h-4 mr-1" />
+                    <span>64 Lessons</span>
+                  </div>
+                  <div className="flex items-center">
+                    <img src="/progress.png" alt="Progress" className="w-4 h-4 mr-1" />
+                    <span>Progress</span>
+                  </div>
+                </div>
+                
+                <Link 
+                  to="/post" 
+                  className="inline-block text-[#23A6F0] font-medium px-5 py-2 border border-[#23A6F0] rounded-full hover:bg-[#23A6F0] hover:text-white transition-all text-sm"
+                >
+                  Learn More <span className="ml-1">→</span>
+                </Link>
               </div>
             </div>
-            <div className="p-4 md:p-6 md:w-3/5">
-              <div className="flex items-center mb-3">
-                <span className="text-sm text-[#23A6F0] mr-4">English Department</span>
-              </div>
-              <h3 className="text-xl font-bold text-[#252B42] mb-3">Graphic Design</h3>
-              <p className="text-sm  text-[#737373] mb-3">
-                We focus on ergonomics and 
-                meeting you where you work. It's 
-                only a keystroke away.
-              </p>
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center">
+            
+            {/* Featured Post 2 */}
+            <div className="bg-white w-full max-w-[700px] rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow flex flex-col md:flex-row">
+              <div className="relative md:w-2/5">
                 <img 
-                src="/sales.png" 
-                alt="Featured Post" 
-                className="w-4 h-4 object-cover mr-1"
-              />
-                  <span className="text-sm text-[#737373]"> 15 Sales</span>
+                  src="/grafik2.png" 
+                  alt="Featured Post" 
+                  className="w-full h-full object-cover min-h-[300px]"
+                />
+                <div className="absolute top-5 left-5">
+                  <span className="bg-[#E74040] text-white text-xs font-bold px-3 py-1 rounded">Sale</span>
                 </div>
-                <div className="flex items-center">
-                  <span className="text-sm text-[#BDBDBD] line-through mr-1">$16.48</span>
-                  <span className="text-sm text-[#23856D] font-bold">$6.48</span>
-                </div>
-              </div> 
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex space-x-1">
-                  <div className="w-4 h-4 rounded-full bg-[#23A6F0]"></div>
-                  <div className="w-4 h-4 rounded-full bg-[#23856D]"></div>
-                  <div className="w-4 h-4 rounded-full bg-[#E77C40]"></div>
-                  <div className="w-4 h-4 rounded-full bg-[#252B42]"></div>
+                <div className="absolute top-5 right-5">
+                  <span className="bg-[#252B42] text-white text-xs font-bold px-3 py-1 rounded-full">⭐ 4.9</span>
                 </div>
               </div>
-              <div className="flex flex-wrap items-center text-xs text-[#737373] mb-4 gap-2">
-                <div className="flex items-center mr-2">
-                  <img 
-                    src="/22hours.png" 
-                    alt="22 Hours" 
-                    className="w-4 h-4 mr-1"
-                  />
-                  <span>22h...</span>
+              
+              <div className="p-6 md:w-3/5">
+                <div className="flex items-center mb-3">
+                  <span className="text-sm text-[#23A6F0]">English Department</span>
                 </div>
-                <div className="flex items-center mr-2">
-                  <img 
-                    src="/64lesson.png" 
-                    alt="64 Lessons" 
-                    className="w-4 h-4 mr-1"
-                  />
-                  <span>64 Lessons</span>
+                <h3 className="text-xl font-bold text-[#252B42] mb-3">Graphic Design</h3>
+                <p className="text-sm text-[#737373] mb-4">
+                  We focus on ergonomics and meeting you where you work. It's only a keystroke away.
+                </p>
+                
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center">
+                    <img src="/sales.png" alt="Sales" className="w-4 h-4 object-cover mr-1" />
+                    <span className="text-sm text-[#737373]">15 Sales</span>
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-sm text-[#BDBDBD] line-through mr-1">$16.48</span>
+                    <span className="text-sm text-[#23856D] font-bold">$6.48</span>
+                  </div>
                 </div>
-                <div className="flex items-center">
-                  <img 
-                    src="/progress.png" 
-                    alt="Progress" 
-                    className="w-4 h-4 mr-1"
-                  />
-                  <span>Progress</span>
+                
+                <div className="flex mb-4">
+                  <div className="flex space-x-1">
+                    <div className="w-4 h-4 rounded-full bg-[#23A6F0]"></div>
+                    <div className="w-4 h-4 rounded-full bg-[#23856D]"></div>
+                    <div className="w-4 h-4 rounded-full bg-[#E77C40]"></div>
+                    <div className="w-4 h-4 rounded-full bg-[#252B42]"></div>
+                  </div>
                 </div>
+                
+                <div className="flex flex-wrap items-center text-xs text-[#737373] mb-4 gap-2">
+                  <div className="flex items-center mr-2">
+                    <img src="/22hours.png" alt="22 Hours" className="w-4 h-4 mr-1" />
+                    <span>22h...</span>
+                  </div>
+                  <div className="flex items-center mr-2">
+                    <img src="/64lesson.png" alt="64 Lessons" className="w-4 h-4 mr-1" />
+                    <span>64 Lessons</span>
+                  </div>
+                  <div className="flex items-center">
+                    <img src="/progress.png" alt="Progress" className="w-4 h-4 mr-1" />
+                    <span>Progress</span>
+                  </div>
+                </div>
+                
+                <Link 
+                  to="/post" 
+                  className="inline-block text-[#23A6F0] font-medium px-5 py-2 border border-[#23A6F0] rounded-full hover:bg-[#23A6F0] hover:text-white transition-all text-sm"
+                >
+                  Learn More <span className="ml-1">→</span>
+                </Link>
               </div>
-              <Link 
-                to="/post" 
-                className="mt-4 inline-block text-[#23A6F0] font-medium px-4 py-2 border border-[#23A6F0] rounded-full hover:bg-[#23A6F0] hover:text-white transition-all text-sm"
-              >
-                Learn More <span className="ml-1">→</span>
-              </Link>
             </div>
           </div>
         </div>

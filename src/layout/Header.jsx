@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, Search, ShoppingCart, Heart, Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -65,12 +66,12 @@ const Header = () => {
             
             {/* Navigation - Desktop */}
             <nav className="hidden md:flex items-center space-x-6">
-              <Link to="/" className="text-[#737373] hover:text-[#23A6F0] font-medium">Home</Link>
-              <Link to="/shop" className="text-[#737373] hover:text-[#23A6F0] font-medium">Shop</Link>
-              <Link to="/about" className="text-[#737373] hover:text-[#23A6F0] font-medium">About</Link>
-              <Link to="/blog" className="text-[#737373] hover:text-[#23A6F0] font-medium">Blog</Link>
-              <Link to="/contact" className="text-[#737373] hover:text-[#23A6F0] font-medium">Contact</Link>
-              <Link to="/pages" className="text-[#737373] hover:text-[#23A6F0] font-medium">Pages</Link>
+              <Link to="/" className={`${location.pathname === '/' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>Home</Link>
+              <Link to="/shop" className={`${location.pathname === '/shop' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>Shop</Link>
+              <Link to="/about" className={`${location.pathname === '/about' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>About</Link>
+              <Link to="/blog" className={`${location.pathname === '/blog' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>Blog</Link>
+              <Link to="/contact" className={`${location.pathname === '/contact' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>Contact</Link>
+              <Link to="/pages" className={`${location.pathname === '/pages' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>Pages</Link>
             </nav>
             
             {/* User Actions */}
@@ -86,7 +87,7 @@ const Header = () => {
                   <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
                   */}
                 </Link>
-                <Link to="/wishlist" className="text-[#737373] relative">
+                <Link to="/wishlist" className="text-[#737373] relative cursor-pointer">
                   <Heart size={20} />
                   {/* 1 bildirimi 
                   <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
@@ -122,12 +123,12 @@ const Header = () => {
               </div>
               
               <nav className="flex flex-col space-y-3">
-                <Link to="/" className="text-[#737373] hover:text-[#23A6F0] font-medium py-2">Home</Link>
-                <Link to="/shop" className="text-[#737373] hover:text-[#23A6F0] font-medium py-2">Shop</Link>
-                <Link to="/about" className="text-[#737373] hover:text-[#23A6F0] font-medium py-2">About</Link>
-                <Link to="/blog" className="text-[#737373] hover:text-[#23A6F0] font-medium py-2">Blog</Link>
-                <Link to="/contact" className="text-[#737373] hover:text-[#23A6F0] font-medium py-2">Contact</Link>
-                <Link to="/pages" className="text-[#737373] hover:text-[#23A6F0] font-medium py-2">Pages</Link>
+                <Link to="/" className={`${location.pathname === '/' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}>Home</Link>
+                <Link to="/shop" className={`${location.pathname === '/shop' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}>Shop</Link>
+                <Link to="/about" className={`${location.pathname === '/about' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}>About</Link>
+                <Link to="/blog" className={`${location.pathname === '/blog' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}>Blog</Link>
+                <Link to="/contact" className={`${location.pathname === '/contact' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}>Contact</Link>
+                <Link to="/pages" className={`${location.pathname === '/pages' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}>Pages</Link>
               </nav>
             </div>
           )}
