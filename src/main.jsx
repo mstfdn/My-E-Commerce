@@ -6,6 +6,7 @@ import PageContent from './layout/PageContent'
 import Footer from './layout/Footer'
 import Shop from './pages/Shop'
 import ProductDetailPage from './pages/ProductDetailPage'
+import Contact from './pages/Contact'
 
 const App = () => {
   return (
@@ -22,6 +23,9 @@ const App = () => {
             </Route>
             <Route path="/product/:id">
               <ProductDetailPage />
+            </Route>
+            <Route path="/contact">
+              <Contact />
             </Route>
             {/* Add more routes as needed */}
           </Switch>
