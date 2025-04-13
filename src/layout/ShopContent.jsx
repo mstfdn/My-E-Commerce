@@ -21,7 +21,7 @@ const ShopContent = () => {
           <img 
             src="/card1.png" 
             alt="Clothes Category" 
-            className="cursor-pointer w-[260px] h-[260px] object-cover transition-transform duration-300 group-hover:scale-110"
+            className="w-[260px] h-[260px] object-cover cursor-pointer transition-transform duration-300 group-hover:scale-110"
           />
         </div>
         

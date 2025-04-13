@@ -9,6 +9,7 @@ import ProductDetailPage from './pages/ProductDetailPage'
 import Contact from './pages/Contact'
 import Blog from './pages/Blog'
 import BlogDetail from './layout/BlogDetail'
+import TeamDetail from './layout/TeamDetail'
 
 const App = () => {
   return (
@@ -34,6 +35,9 @@ const App = () => {
             </Route>
             <Route path="/blog/:id">
               <BlogDetail />
+            </Route>
+            <Route exact path="/team">
+              <TeamDetail />
             </Route>
             {/* Add more routes as needed */}
           </Switch>
