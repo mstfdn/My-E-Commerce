@@ -85,7 +85,7 @@ const AboutDetail = () => {
     <div className="relative w-full max-w-4xl mx-auto rounded-lg overflow-hidden my-8">
         {/* Ana görsel */}
         <img 
-            src="/public/video.png" 
+            src="/video.png" 
             alt="Dağ manzarası ve göl" 
             className="w-full h-auto rounded-lg"
         />
@@ -93,7 +93,7 @@ const AboutDetail = () => {
         {/* Oynat butonu - ortada konumlandırılmış */}
         <div className="absolute inset-0 flex items-center justify-center">
             <img 
-            src="/public/videobuton.png" 
+            src="/videobuton.png" 
             alt="Video oynat" 
             className="w-16 h-16 cursor-pointer hover:scale-110 transition-transform"
             />
