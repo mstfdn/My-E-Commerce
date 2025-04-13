@@ -1,6 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, Search, ShoppingCart, Heart, Menu, X } from 'lucide-react';
+import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, Search, ShoppingCart, Heart, Menu, X, ChevronDown } from 'lucide-react';
+import { Popover, Transition } from '@headlessui/react';
+import { Fragment } from 'react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -71,7 +73,56 @@ const Header = () => {
               <Link to="/about" className={`${location.pathname === '/about' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>About</Link>
               <Link to="/blog" className={`${location.pathname === '/blog' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>Blog</Link>
               <Link to="/contact" className={`${location.pathname === '/contact' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>Contact</Link>
-              <Link to="/pages" className={`${location.pathname === '/pages' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>Pages</Link>
+              
+              {/* More Dropdown with Popover */}
+              <Popover className="relative">
+                {({ open }) => (
+                  <>
+                    <Popover.Button
+                      className={`
+                        ${open ? 'text-[#23A6F0]' : location.pathname === '/more' ? 'text-[#23A6F0]' : 'text-[#737373]'}
+                        cursor-pointer group inline-flex items-center hover:text-[#23A6F0] font-medium focus:outline-none
+                      `}
+                    >
+                      <span>More</span>
+                      <ChevronDown
+                        className={`${open ? 'text-[#23A6F0] rotate-180' : 'text-[#737373]'} ml-1 h-4 w-4 transition-transform duration-200`}
+                        aria-hidden="true"
+                      />
+                    </Popover.Button>
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-200"
+                      enterFrom="opacity-0 translate-y-1"
+                      enterTo="opacity-100 translate-y-0"
+                      leave="transition ease-in duration-150"
+                      leaveFrom="opacity-100 translate-y-0"
+                      leaveTo="opacity-0 translate-y-1"
+                    >
+                      <Popover.Panel className="absolute z-10 w-40 mt-3 transform -translate-x-1/4">
+                        <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-gray-200 ring-opacity-5">
+                          <div className="relative bg-white p-3 flex flex-col space-y-2">
+                            <Link
+                              to="/team"
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#23A6F0] rounded-md"
+                              onClick={() => {}}
+                            >
+                              Team
+                            </Link>
+                            <Link
+                              to="/pricing"
+                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#23A6F0] rounded-md"
+                              onClick={() => {}}
+                            >
+                              Pricing
+                            </Link>
+                          </div>
+                        </div>
+                      </Popover.Panel>
+                    </Transition>
+                  </>
+                )}
+              </Popover>
             </nav>
             
             {/* User Actions */}
@@ -97,7 +148,6 @@ const Header = () => {
             </div>
           </div>
           
-          {/* Mobile Menu */}
           {/* Mobile Menu */}
           {isMenuOpen && (
             <div className="md:hidden mt-4 pb-4">
@@ -158,13 +208,56 @@ const Header = () => {
                 >
                   Contact
                 </Link>
-                <Link 
-                  to="/pages" 
-                  className={`${location.pathname === '/pages' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Pages
-                </Link>
+                
+                {/* Mobil için More dropdown */}
+                <Popover className="relative">
+                  {({ open }) => (
+                    <>
+                      <Popover.Button
+                        className={`
+                          ${open ? 'text-[#23A6F0]' : location.pathname === '/more' ? 'text-[#23A6F0]' : 'text-[#737373]'} 
+                          text-left hover:text-[#23A6F0] font-medium py-2 flex items-center focus:outline-none
+                        `}
+                      >
+                        <span>More</span>
+                        <ChevronDown
+                          className={`${open ? 'text-[#23A6F0] rotate-180' : 'text-[#737373]'} ml-1 h-4 w-4 transition-transform duration-200`}
+                          aria-hidden="true"
+                        />
+                      </Popover.Button>
+                      <Transition
+                        as={Fragment}
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
+                      >
+                        <Popover.Panel className="relative mt-2 w-full">
+                          <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-gray-200 ring-opacity-5">
+                            <div className="relative bg-white p-3 flex flex-col space-y-2">
+                              <Link
+                                to="/team"
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#23A6F0] rounded-md"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                Team
+                              </Link>
+                              <Link
+                                to="/pricing"
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#23A6F0] rounded-md"
+                                onClick={() => setIsMenuOpen(false)}
+                              >
+                                Pricing
+                              </Link>
+                            </div>
+                          </div>
+                        </Popover.Panel>
+                      </Transition>
+                    </>
+                  )}
+                </Popover>
               </nav>
             </div>
           )}
