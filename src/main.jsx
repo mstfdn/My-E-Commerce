@@ -10,6 +10,7 @@ import Contact from './pages/Contact'
 import Blog from './pages/Blog'
 import BlogDetail from './layout/BlogDetail'
 import TeamDetail from './layout/TeamDetail'
+import AboutDetail from './layout/AboutDetail'
 
 const App = () => {
   return (
@@ -38,6 +39,9 @@ const App = () => {
             </Route>
             <Route exact path="/team">
               <TeamDetail />
+            </Route>
+            <Route exact path="/about">
+              <AboutDetail />
             </Route>
             {/* Add more routes as needed */}
           </Switch>
