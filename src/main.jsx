@@ -7,6 +7,8 @@ import Footer from './layout/Footer'
 import Shop from './pages/Shop'
 import ProductDetailPage from './pages/ProductDetailPage'
 import Contact from './pages/Contact'
+import Blog from './pages/Blog'
+import BlogDetail from './layout/BlogDetail'
 
 const App = () => {
   return (
@@ -18,7 +20,7 @@ const App = () => {
             <Route exact path="/">
               <PageContent />
             </Route>
-            <Route path="/shop">
+            <Route exact path="/shop">
               <Shop />
             </Route>
             <Route path="/product/:id">
@@ -26,6 +28,12 @@ const App = () => {
             </Route>
             <Route path="/contact">
               <Contact />
+            </Route>
+            <Route exact path="/blog">
+              <Blog />
+            </Route>
+            <Route path="/blog/:id">
+              <BlogDetail />
             </Route>
             {/* Add more routes as needed */}
           </Switch>
