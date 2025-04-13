@@ -5,6 +5,7 @@ import './assets/css/tailwind.css'
 import PageContent from './layout/PageContent'
 import Footer from './layout/Footer'
 import Shop from './pages/Shop'
+import ProductDetailPage from './pages/ProductDetailPage'
 
 const App = () => {
   return (
@@ -18,6 +19,9 @@ const App = () => {
             </Route>
             <Route path="/shop">
               <Shop />
+            </Route>
+            <Route path="/product/:id">
+              <ProductDetailPage />
             </Route>
             {/* Add more routes as needed */}
           </Switch>

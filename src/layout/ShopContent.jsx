@@ -101,256 +101,280 @@ const ShopContent = () => {
       {/* Products Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
         {/* Product 1 */}
-        <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-            <img src="/urun1.png" alt="Product" className="w-[239px] h-[300px] object-cover cursor-pointer transition-transform hover:scale-105"/>
-          </div>
-          <div className="text-center">
-            <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-            <p className="text-sm text-[#737373] mb-2">English Department</p>
-            <div className="flex justify-center items-center gap-1">
-              <span className="text-[#BDBDBD] line-through">$16.48</span>
-              <span className="text-[#23856D] font-bold">$6.48</span>
+        <Link to="/product/1">
+          <div className="group">
+            <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/urun1.png" alt="Product" className="w-[239px] h-[300px] object-cover cursor-pointer transition-transform hover:scale-105"/>
             </div>
-            <div className="flex justify-center mt-2 space-x-1">
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+            <div className="text-center">
+              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
+              <p className="text-sm text-[#737373] mb-2">English Department</p>
+              <div className="flex justify-center items-center gap-1">
+                <span className="text-[#BDBDBD] line-through">$16.48</span>
+                <span className="text-[#23856D] font-bold">$6.48</span>
+              </div>
+              <div className="flex justify-center mt-2 space-x-1">
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Product 2 */}
-        <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-            <img src="/urun2.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
-          </div>
-          <div className="text-center">
-            <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-            <p className="text-sm text-[#737373] mb-2">English Department</p>
-            <div className="flex justify-center items-center gap-1">
-              <span className="text-[#BDBDBD] line-through">$16.48</span>
-              <span className="text-[#23856D] font-bold">$6.48</span>
+        <Link to="/product/2">
+          <div className="group">
+            <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/urun2.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
             </div>
-            <div className="flex justify-center mt-2 space-x-1">
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+            <div className="text-center">
+              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
+              <p className="text-sm text-[#737373] mb-2">English Department</p>
+              <div className="flex justify-center items-center gap-1">
+                <span className="text-[#BDBDBD] line-through">$16.48</span>
+                <span className="text-[#23856D] font-bold">$6.48</span>
+              </div>
+              <div className="flex justify-center mt-2 space-x-1">
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Product 3 */}
-        <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-            <img src="/urun3.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
-          </div>
-          <div className="text-center">
-            <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-            <p className="text-sm text-[#737373] mb-2">English Department</p>
-            <div className="flex justify-center items-center gap-1">
-              <span className="text-[#BDBDBD] line-through">$16.48</span>
-              <span className="text-[#23856D] font-bold">$6.48</span>
+        <Link to="/product/3">
+          <div className="group">
+            <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/urun3.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
             </div>
-            <div className="flex justify-center mt-2 space-x-1">
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+            <div className="text-center">
+              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
+              <p className="text-sm text-[#737373] mb-2">English Department</p>
+              <div className="flex justify-center items-center gap-1">
+                <span className="text-[#BDBDBD] line-through">$16.48</span>
+                <span className="text-[#23856D] font-bold">$6.48</span>
+              </div>
+              <div className="flex justify-center mt-2 space-x-1">
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Product 4 */}
-        <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-            <img src="/urun4.jpg" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
-          </div>
-          <div className="text-center">
-            <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-            <p className="text-sm text-[#737373] mb-2">English Department</p>
-            <div className="flex justify-center items-center gap-1">
-              <span className="text-[#BDBDBD] line-through">$16.48</span>
-              <span className="text-[#23856D] font-bold">$6.48</span>
+        <Link to="/product/4">
+          <div className="group">
+            <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/urun4.jpg" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
             </div>
-            <div className="flex justify-center mt-2 space-x-1">
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+            <div className="text-center">
+              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
+              <p className="text-sm text-[#737373] mb-2">English Department</p>
+              <div className="flex justify-center items-center gap-1">
+                <span className="text-[#BDBDBD] line-through">$16.48</span>
+                <span className="text-[#23856D] font-bold">$6.48</span>
+              </div>
+              <div className="flex justify-center mt-2 space-x-1">
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Product 5 */}
-        <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-            <img src="/urun5.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
-          </div>
-          <div className="text-center">
-            <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-            <p className="text-sm text-[#737373] mb-2">English Department</p>
-            <div className="flex justify-center items-center gap-1">
-              <span className="text-[#BDBDBD] line-through">$16.48</span>
-              <span className="text-[#23856D] font-bold">$6.48</span>
+        <Link to="/product/5">
+          <div className="group">
+            <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/urun5.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
             </div>
-            <div className="flex justify-center mt-2 space-x-1">
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+            <div className="text-center">
+              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
+              <p className="text-sm text-[#737373] mb-2">English Department</p>
+              <div className="flex justify-center items-center gap-1">
+                <span className="text-[#BDBDBD] line-through">$16.48</span>
+                <span className="text-[#23856D] font-bold">$6.48</span>
+              </div>
+              <div className="flex justify-center mt-2 space-x-1">
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Product 6 */}
-        <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-            <img src="/urun6.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
-          </div>
-          <div className="text-center">
-            <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-            <p className="text-sm text-[#737373] mb-2">English Department</p>
-            <div className="flex justify-center items-center gap-1">
-              <span className="text-[#BDBDBD] line-through">$16.48</span>
-              <span className="text-[#23856D] font-bold">$6.48</span>
+        <Link to="/product/6">
+          <div className="group">
+            <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/urun6.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
             </div>
-            <div className="flex justify-center mt-2 space-x-1">
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+            <div className="text-center">
+              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
+              <p className="text-sm text-[#737373] mb-2">English Department</p>
+              <div className="flex justify-center items-center gap-1">
+                <span className="text-[#BDBDBD] line-through">$16.48</span>
+                <span className="text-[#23856D] font-bold">$6.48</span>
+              </div>
+              <div className="flex justify-center mt-2 space-x-1">
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Product 7 */}
-        <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-            <img src="/urun7.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
-          </div>
-          <div className="text-center">
-            <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-            <p className="text-sm text-[#737373] mb-2">English Department</p>
-            <div className="flex justify-center items-center gap-1">
-              <span className="text-[#BDBDBD] line-through">$16.48</span>
-              <span className="text-[#23856D] font-bold">$6.48</span>
+        <Link to="/product/7">
+          <div className="group">
+            <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/urun7.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
             </div>
-            <div className="flex justify-center mt-2 space-x-1">
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+            <div className="text-center">
+              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
+              <p className="text-sm text-[#737373] mb-2">English Department</p>
+              <div className="flex justify-center items-center gap-1">
+                <span className="text-[#BDBDBD] line-through">$16.48</span>
+                <span className="text-[#23856D] font-bold">$6.48</span>
+              </div>
+              <div className="flex justify-center mt-2 space-x-1">
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Product 8 */}
-        <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-            <img src="/urun8.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
-          </div>
-          <div className="text-center">
-            <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-            <p className="text-sm text-[#737373] mb-2">English Department</p>
-            <div className="flex justify-center items-center gap-1">
-              <span className="text-[#BDBDBD] line-through">$16.48</span>
-              <span className="text-[#23856D] font-bold">$6.48</span>
+        <Link to="/product/8">
+          <div className="group">
+            <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/urun8.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
             </div>
-            <div className="flex justify-center mt-2 space-x-1">
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+            <div className="text-center">
+              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
+              <p className="text-sm text-[#737373] mb-2">English Department</p>
+              <div className="flex justify-center items-center gap-1">
+                <span className="text-[#BDBDBD] line-through">$16.48</span>
+                <span className="text-[#23856D] font-bold">$6.48</span>
+              </div>
+              <div className="flex justify-center mt-2 space-x-1">
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Product 9 */}
-        <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-            <img src="/urun9.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
-          </div>
-          <div className="text-center">
-            <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-            <p className="text-sm text-[#737373] mb-2">English Department</p>
-            <div className="flex justify-center items-center gap-1">
-              <span className="text-[#BDBDBD] line-through">$16.48</span>
-              <span className="text-[#23856D] font-bold">$6.48</span>
+        <Link to="/product/9">
+          <div className="group">
+            <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/urun9.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
             </div>
-            <div className="flex justify-center mt-2 space-x-1">
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+            <div className="text-center">
+              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
+              <p className="text-sm text-[#737373] mb-2">English Department</p>
+              <div className="flex justify-center items-center gap-1">
+                <span className="text-[#BDBDBD] line-through">$16.48</span>
+                <span className="text-[#23856D] font-bold">$6.48</span>
+              </div>
+              <div className="flex justify-center mt-2 space-x-1">
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Product 10 */}
-        <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-            <img src="/urun10.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
-          </div>
-          <div className="text-center">
-            <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-            <p className="text-sm text-[#737373] mb-2">English Department</p>
-            <div className="flex justify-center items-center gap-1">
-              <span className="text-[#BDBDBD] line-through">$16.48</span>
-              <span className="text-[#23856D] font-bold">$6.48</span>
+        <Link to="/product/10">
+          <div className="group">
+            <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/urun10.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
             </div>
-            <div className="flex justify-center mt-2 space-x-1">
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+            <div className="text-center">
+              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
+              <p className="text-sm text-[#737373] mb-2">English Department</p>
+              <div className="flex justify-center items-center gap-1">
+                <span className="text-[#BDBDBD] line-through">$16.48</span>
+                <span className="text-[#23856D] font-bold">$6.48</span>
+              </div>
+              <div className="flex justify-center mt-2 space-x-1">
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Product 11 */}
-        <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-            <img src="/urun11.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
-          </div>
-          <div className="text-center">
-            <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-            <p className="text-sm text-[#737373] mb-2">English Department</p>
-            <div className="flex justify-center items-center gap-1">
-              <span className="text-[#BDBDBD] line-through">$16.48</span>
-              <span className="text-[#23856D] font-bold">$6.48</span>
+        <Link to="/product/11">
+          <div className="group">
+            <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/urun11.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
             </div>
-            <div className="flex justify-center mt-2 space-x-1">
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+            <div className="text-center">
+              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
+              <p className="text-sm text-[#737373] mb-2">English Department</p>
+              <div className="flex justify-center items-center gap-1">
+                <span className="text-[#BDBDBD] line-through">$16.48</span>
+                <span className="text-[#23856D] font-bold">$6.48</span>
+              </div>
+              <div className="flex justify-center mt-2 space-x-1">
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
 
         {/* Product 12 */}
-        <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-            <img src="/urun12.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
-          </div>
-          <div className="text-center">
-            <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-            <p className="text-sm text-[#737373] mb-2">English Department</p>
-            <div className="flex justify-center items-center gap-1">
-              <span className="text-[#BDBDBD] line-through">$16.48</span>
-              <span className="text-[#23856D] font-bold">$6.48</span>
+        <Link to="/product/12">
+          <div className="group">
+            <div className="mb-4 relative overflow-hidden flex justify-center items-center">
+              <img src="/urun12.png" alt="Product" className="w-[239px] h-[300px] object-cover transition-transform hover:scale-105 cursor-pointer" />
             </div>
-            <div className="flex justify-center mt-2 space-x-1">
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
-              <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+            <div className="text-center">
+              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
+              <p className="text-sm text-[#737373] mb-2">English Department</p>
+              <div className="flex justify-center items-center gap-1">
+                <span className="text-[#BDBDBD] line-through">$16.48</span>
+                <span className="text-[#23856D] font-bold">$6.48</span>
+              </div>
+              <div className="flex justify-center mt-2 space-x-1">
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
+                <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
+              </div>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
 
       {/* Pagination */}

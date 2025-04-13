@@ -1,0 +1,66 @@
+{
+  "1": {
+    "id": 1,
+    "name": "Graphic Design",
+    "department": "English Department",
+    "price": 16.48,
+    "salePrice": 6.48,
+    "imageUrl": "/product1.png"
+  },
+  "2": {
+    "id": 2,
+    "name": "Graphic Design",
+    "department": "English Department",
+    "price": 16.48,
+    "salePrice": 6.48,
+    "imageUrl": "/product2.png"
+  },
+  "3": {
+    "id": 3,
+    "name": "Graphic Design",
+    "department": "English Department",
+    "price": 16.48,
+    "salePrice": 6.48,
+    "imageUrl": "/product3.png"
+  },
+  "4": {
+    "id": 4,
+    "name": "Graphic Design",
+    "department": "English Department",
+    "price": 16.48,
+    "salePrice": 6.48,
+    "imageUrl": "/product4.png"
+  },
+  "5": {
+    "id": 5,
+    "name": "Graphic Design",
+    "department": "English Department",
+    "price": 16.48,
+    "salePrice": 6.48,
+    "imageUrl": "/product5.png"
+  },
+  "6": {
+    "id": 6,
+    "name": "Graphic Design",
+    "department": "English Department",
+    "price": 16.48,
+    "salePrice": 6.48,
+    "imageUrl": "/product6.png"
+  },
+  "7": {
+    "id": 7,
+    "name": "Graphic Design",
+    "department": "English Department",
+    "price": 16.48,
+    "salePrice": 6.48,
+    "imageUrl": "/product7.png"
+  },
+  "8": {
+    "id": 8,
+    "name": "Graphic Design",
+    "department": "English Department",
+    "price": 16.48,
+    "salePrice": 6.48,
+    "imageUrl": "/product8.png"
+  }
+}
