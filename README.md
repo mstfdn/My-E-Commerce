@@ -13,3 +13,4 @@ If you are developing a production application, we recommend using TypeScript an
 
 react-icon-added.
 headless-ui added.
+proje yönetimi yaptım. kanban kullandım. bir yöneticim vardı. ona sunumlar yapıp meetinglerle reviewlara bakıp projeleri check ettik.

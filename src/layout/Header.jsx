@@ -132,17 +132,17 @@ const Header = () => {
                 <Link to="/search" className="text-[#737373]">
                   <Search size={20} />
                 </Link>
-                <Link to="/cart" className="text-[#737373] relative">
+                <Link to="/cart" className="text-[#23A6F0] relative">
                   <ShoppingCart size={20} />
-                  {/* 1 bildirimi 
+                  
                   <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
-                  */}
+                  
                 </Link>
-                <Link to="/wishlist" className="text-[#737373] relative cursor-pointer">
+                <Link to="/wishlist" className="text-[#23A6F0] relative cursor-pointer">
                   <Heart size={20} />
-                  {/* 1 bildirimi 
+                  
                   <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
-                  */}
+                  
                 </Link>
               </div>
             </div>
