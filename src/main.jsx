@@ -12,6 +12,10 @@ import BlogDetail from './layout/BlogDetail'
 import TeamDetail from './layout/TeamDetail'
 import AboutDetail from './layout/AboutDetail'
 import Pricing from './pages/Pricing'
+import SignUp from './pages/SignUp'
+import Login from './pages/Login'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const App = () => {
   return (
@@ -47,10 +51,17 @@ const App = () => {
             <Route exact path="/pricing">
               <Pricing />
             </Route>
+            <Route exact path="/signup">
+              <SignUp />
+            </Route>
+            <Route exact path="/login">
+              <Login />
+            </Route>
             {/* Add more routes as needed */}
           </Switch>
         </main>
         <Footer />
+        <ToastContainer position="top-right" autoClose={5000} />
       </div>
     </Router>
   )

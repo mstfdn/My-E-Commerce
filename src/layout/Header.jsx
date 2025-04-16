@@ -127,7 +127,11 @@ const Header = () => {
             
             {/* User Actions */}
             <div className="hidden md:flex items-center space-x-6">
-              <Link to="/login" className="text-[#23A6F0] hover:underline">Login / Register</Link>
+              <div className="flex space-x-2">
+                <Link to="/login" className="text-[#23A6F0] hover:underline">Login</Link>
+                <span className="text-gray-400">/</span>
+                <Link to="/signup" className="text-[#23A6F0] hover:underline">Register</Link>
+              </div>
               <div className="flex items-center space-x-4">
                 <Link to="/search" className="text-[#737373]">
                   <Search size={20} />
