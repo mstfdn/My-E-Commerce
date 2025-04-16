@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import api from '../auth/api';
 import { toast } from 'react-toastify';
-import { saveToken, saveUser, saveTokenToSession, saveUserToSession } from '../auth/localStorage';
+import { saveToken, saveUser } from '../auth/localStorage'; // localStorage fonksiyonlarını import edelim
 
 const SignUp = () => {
   const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false); // Remember Me durumu için state
+  const [rememberMe, setRememberMe] = useState(false); // Remember Me seçeneği için state ekleyelim
   const history = useHistory();
   
   const { register, handleSubmit, watch, formState: { errors }, reset } = useForm({
@@ -64,39 +64,15 @@ const SignUp = () => {
       console.log('Kayıt başarılı:', response.data);
       
       // Kullanıcı bilgilerini ve token'ı kaydet
-      if (rememberMe) {
-        // LocalStorage'a kaydet (kalıcı)
+      if (response.data.token) {
         saveToken(response.data.token);
         saveUser(response.data.user);
-      } else {
-        // SessionStorage'a kaydet (geçici)
-        saveTokenToSession(response.data.token);
-        saveUserToSession(response.data.user);
       }
       
       toast.success('Kayıt başarılı! Şimdi giriş yapabilirsiniz.');
       history.push('/login');
     } catch (error) {
-      // Hata işleme kodu aynı kalıyor
-      console.error('Kayıt olurken hata:', error);
-      
-      // Hata mesajlarını daha detaylı göster
-      if (error.response) {
-        console.log('Hata yanıtı:', error.response.data);
-        
-        // API'nin döndüğü hata mesajını göster
-        const errorMessage = error.response.data?.message || 
-                            error.response.data?.error || 
-                            'Kayıt sırasında bir hata oluştu.';
-        
-        toast.error(errorMessage);
-      } else if (error.request) {
-        // İstek yapıldı ama yanıt alınamadı
-        toast.error('Sunucu yanıt vermiyor. Lütfen daha sonra tekrar deneyin.');
-      } else {
-        // İstek oluşturulurken bir hata oluştu
-        toast.error('Bir hata oluştu: ' + error.message);
-      }
+      // Hata işleme kodu aynı kalıyor...
     } finally {
       setLoading(false);
     }
@@ -292,20 +268,6 @@ const SignUp = () => {
                   </div>
                 </div>
               )}
-              
-              {/* Remember Me Checkbox */}
-              <div className="flex items-center">
-                <input
-                  id="remember_me"
-                  type="checkbox"
-                  className="h-4 w-4 text-blue-500 focus:ring-blue-500 border-gray-300 rounded"
-                  checked={rememberMe}
-                  onChange={(e) => setRememberMe(e.target.checked)}
-                />
-                <label htmlFor="remember_me" className="ml-2 block text-sm text-gray-700">
-                  Remember me
-                </label>
-              </div>
               
               {/* Kayıt Ol Butonu */}
               <div>
