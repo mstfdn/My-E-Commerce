@@ -1,6 +1,7 @@
 import api from '../../auth/api';
 import { setUser } from './clientActions';
 import { toast } from 'react-toastify';
+import { setAuthToken } from '../../auth/authService';
 
 // Login işlemi için thunk action creator
 export const loginUser = (credentials, history, rememberMe, prevPath) => {
@@ -15,20 +16,24 @@ export const loginUser = (credentials, history, rememberMe, prevPath) => {
       // Token'ı localStorage veya sessionStorage'a kaydet
       if (rememberMe) {
         localStorage.setItem('token', response.data.token);
-        // Kullanıcı bilgilerini de localStorage'a kaydedelim
         localStorage.setItem('user', JSON.stringify(response.data.user));
       } else {
-        // Session storage'a kaydet (tarayıcı kapandığında silinir)
         sessionStorage.setItem('token', response.data.token);
         sessionStorage.setItem('user', JSON.stringify(response.data.user));
       }
+      
+      // Token'ı axios header'ına ekle
+      setAuthToken(response.data.token);
       
       toast.success('Giriş başarılı!');
       
       // Kullanıcıyı önceki sayfaya veya ana sayfaya yönlendir
       history.push(prevPath || '/');
       
-      return { success: true };
+      return { 
+        success: true,
+        user: response.data.user
+      };
     } catch (error) {
       console.error('Giriş yapılırken hata:', error);
       
@@ -43,21 +48,27 @@ export const loginUser = (credentials, history, rememberMe, prevPath) => {
 };
 
 // Kullanıcı çıkışı için action creator
-export const logoutUser = (history) => {
+export const logoutUser = () => {
   return (dispatch) => {
-    // Kullanıcı bilgilerini temizle
-    dispatch(setUser({}));
-    
-    // Token'ı localStorage ve sessionStorage'dan sil
+    // LocalStorage ve SessionStorage'dan kullanıcı bilgilerini temizle
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('user');
     
-    // Ana sayfaya yönlendir
-    if (history) {
-      history.push('/');
-    }
+    // Token'ı axios header'dan temizle
+    setAuthToken(null);
+    
+    // Redux store'dan kullanıcı bilgilerini temizle
+    dispatch(setUser({}));
+    
+    toast.success('Çıkış yapıldı');
+    
+    // Not: Burada history.push('/login') yapmıyoruz çünkü
+    // bu fonksiyon component dışında ve history nesnesi yok
+    // Yönlendirmeyi Header.jsx'te handleLogout fonksiyonunda yapacağız
+    
+    return { success: true };
   };
 };
 

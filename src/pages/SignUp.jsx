@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import api from '../auth/api';
 import { toast } from 'react-toastify';
-import { saveToken, saveUser } from '../auth/localStorage'; // localStorage fonksiyonlarını import edelim
+import { setUser } from '../store/actions/clientActions';
+import { setAuthToken } from '../auth/authService';
 
 const SignUp = () => {
   const [roles, setRoles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false); // Remember Me seçeneği için state ekleyelim
   const history = useHistory();
+  const dispatch = useDispatch();
   
   const { register, handleSubmit, watch, formState: { errors }, reset } = useForm({
     defaultValues: {
@@ -65,8 +68,21 @@ const SignUp = () => {
       
       // Kullanıcı bilgilerini ve token'ı kaydet
       if (response.data.token) {
-        saveToken(response.data.token);
-        saveUser(response.data.user);
+        // Beni hatırla seçeneğine göre token'ı kaydet
+        if (rememberMe) {
+          localStorage.setItem('token', response.data.token);
+          localStorage.setItem('user', JSON.stringify(response.data.user));
+          // Token'ı axios header'ına ekle
+          setAuthToken(response.data.token);
+        } else {
+          sessionStorage.setItem('token', response.data.token);
+          sessionStorage.setItem('user', JSON.stringify(response.data.user));
+          // Token'ı axios header'ına ekle
+          setAuthToken(response.data.token);
+        }
+        
+        // Redux store'a kullanıcı bilgilerini kaydet
+        dispatch(setUser(response.data.user));
       }
       
       toast.success('Kayıt başarılı! Şimdi giriş yapabilirsiniz.');

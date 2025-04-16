@@ -4,6 +4,8 @@ import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, Search, ShoppingCar
 import { Popover, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { logoutUser } from '../store/actions/authActions'; // logoutUser action'ını import edelim
+import { useHistory } from 'react-router-dom'; // useHistory hook'unu import edelim
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,7 +16,8 @@ const Header = () => {
   // localStorage veya sessionStorage'dan kullanıcı bilgisini çekme
   const [userFromStorage, setUserFromStorage] = useState(null);
   const dispatch = useDispatch();
-
+  const history = useHistory(); // useHistory hook'unu kullanıyoruz
+  
   // Kullanıcı bilgisini localStorage veya sessionStorage'dan çekme
   useEffect(() => {
     try {
@@ -61,21 +64,11 @@ const Header = () => {
 
   // Kullanıcı çıkış fonksiyonu
   const handleLogout = () => {
-    // Local storage ve session storage'dan kullanıcı bilgilerini temizle
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-    sessionStorage.removeItem('user');
-    sessionStorage.removeItem('token');
+    // Redux action'ı ile çıkış yap
+    dispatch(logoutUser());
     
-    // Redux store'dan kullanıcı bilgilerini temizle
-    // Eğer logoutUser action'ı varsa kullan
-    // dispatch(logoutUser());
-    
-    // Kullanıcı state'ini güncelle
-    setUserFromStorage(null);
-    
-    // Ana sayfaya yönlendir (isteğe bağlı)
-    // window.location.href = '/';
+    // Kullanıcıyı login sayfasına yönlendir
+    history.push('/login');
   };
 
   return (
