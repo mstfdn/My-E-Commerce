@@ -1,15 +1,24 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useState } from 'react';
-import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, Search, ShoppingCart, Heart, Menu, X, ChevronDown } from 'lucide-react';
+import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, Search, ShoppingCart, Heart, Menu, X, ChevronDown, User, Settings, UserCircle, LogOut } from 'lucide-react';
 import { Popover, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const user = useSelector(state => state.client.user);
+  const dispatch = useDispatch();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Kullanıcı çıkış fonksiyonu
+  const handleLogout = () => {
+    // Burada çıkış işlemi yapılacak
+    // dispatch(logoutUser());
   };
 
   return (
@@ -22,73 +31,59 @@ const Header = () => {
             <div className="flex items-center space-x-4 md:space-x-6">
               <a href="tel:(225) 555-0118" className="flex items-center gap-1 text-sm">
                 <Phone size={16} />
-                <span className="hidden sm:inline">(225) 555-0118</span>
+                <span>(225) 555-0118</span>
               </a>
               <a href="mailto:michelle.rivera@example.com" className="flex items-center gap-1 text-sm">
                 <Mail size={16} />
-                <span className="hidden sm:inline">michelle.rivera@example.com</span>
+                <span>michelle.rivera@example.com</span>
               </a>
             </div>
             
-            {/* Promo Text */}
+            {/* Slogan */}
             <div className="hidden md:block text-sm">
-              Follow Us and get a chance to win 80% off
+              <p>Follow Us and get a chance to win 80% off</p>
             </div>
             
-            {/* Social Links */}
-            <div className="flex items-center space-x-3">
-              <span className="text-sm hidden sm:inline">Follow Us :</span>
+            {/* Social Media */}
+            <div className="flex items-center space-x-4">
+              <span className="text-sm hidden md:inline">Follow Us :</span>
               <div className="flex space-x-2">
-                <a href="#" className="hover:text-gray-200"><Instagram size={16} /></a>
-                <a href="#" className="hover:text-gray-200"><Youtube size={16} /></a>
-                <a href="#" className="hover:text-gray-200"><Facebook size={16} /></a>
-                <a href="#" className="hover:text-gray-200"><Twitter size={16} /></a>
+                <a href="#" className="hover:text-[#23A6F0]"><Instagram size={16} /></a>
+                <a href="#" className="hover:text-[#23A6F0]"><Youtube size={16} /></a>
+                <a href="#" className="hover:text-[#23A6F0]"><Facebook size={16} /></a>
+                <a href="#" className="hover:text-[#23A6F0]"><Twitter size={16} /></a>
               </div>
             </div>
           </div>
         </div>
       </div>
       
-      {/* Main Header */}
+      {/* Main Navigation */}
       <div className="bg-white py-4 shadow-sm">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
-            <div className="text-2xl font-bold text-[#252B42]">
-              <Link to="/">Bandage</Link>
-            </div>
+            <Link to="/" className="text-2xl font-bold text-[#252B42]">Bandage</Link>
             
-            {/* Mobile Menu Button */}
-            <button 
-              className="md:hidden text-gray-700 focus:outline-none"
-              onClick={toggleMenu}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
-            
-            {/* Navigation - Desktop */}
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6">
-              <Link to="/" className={`${location.pathname === '/' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>Home</Link>
-              <Link to="/shop" className={`${location.pathname === '/shop' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>Shop</Link>
-              <Link to="/about" className={`${location.pathname === '/about' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>About</Link>
-              <Link to="/blog" className={`${location.pathname === '/blog' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>Blog</Link>
-              <Link to="/contact" className={`${location.pathname === '/contact' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium`}>Contact</Link>
+              <Link to="/" className={`text-sm font-medium ${location.pathname === '/' ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0]'}`}>Home</Link>
+              <Link to="/shop" className={`text-sm font-medium ${location.pathname === '/shop' ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0]'}`}>Shop</Link>
+              <Link to="/about" className={`text-sm font-medium ${location.pathname === '/about' ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0]'}`}>About</Link>
+              <Link to="/blog" className={`text-sm font-medium ${location.pathname === '/blog' ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0]'}`}>Blog</Link>
+              <Link to="/contact" className={`text-sm font-medium ${location.pathname === '/contact' ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0]'}`}>Contact</Link>
               
-              {/* More Dropdown with Popover */}
+              {/* More Dropdown */}
               <Popover className="relative">
                 {({ open }) => (
                   <>
-                    <Popover.Button
-                      className={`
-                        ${open ? 'text-[#23A6F0]' : location.pathname === '/more' ? 'text-[#23A6F0]' : 'text-[#737373]'}
-                        cursor-pointer group inline-flex items-center hover:text-[#23A6F0] font-medium focus:outline-none
-                      `}
-                    >
-                      <span>More</span>
-                      <ChevronDown
-                        className={`${open ? 'text-[#23A6F0] rotate-180' : 'text-[#737373]'} ml-1 h-4 w-4 transition-transform duration-200`}
-                        aria-hidden="true"
-                      />
+                    <Popover.Button className={`flex items-center text-sm font-medium ${
+                      location.pathname === '/team' || location.pathname === '/pricing' 
+                        ? 'text-[#23A6F0]' 
+                        : 'text-[#737373] hover:text-[#23A6F0]'
+                    } focus:outline-none`}>
+                      <span className='cursor-pointer'>More</span>
+                      <ChevronDown size={16} className={`ml-1 transition-transform ${open ? 'rotate-180' : ''}`} />
                     </Popover.Button>
                     <Transition
                       as={Fragment}
@@ -99,24 +94,20 @@ const Header = () => {
                       leaveFrom="opacity-100 translate-y-0"
                       leaveTo="opacity-0 translate-y-1"
                     >
-                      <Popover.Panel className="absolute z-10 w-40 mt-3 transform -translate-x-1/4">
-                        <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-gray-200 ring-opacity-5">
-                          <div className="relative bg-white p-3 flex flex-col space-y-2">
-                            <Link
-                              to="/team"
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#23A6F0] rounded-md"
-                              onClick={() => {}}
-                            >
-                              Team
-                            </Link>
-                            <Link
-                              to="/pricing"
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#23A6F0] rounded-md"
-                              onClick={() => {}}
-                            >
-                              Pricing
-                            </Link>
-                          </div>
+                      <Popover.Panel className="absolute z-10 w-40 mt-3 left-0 bg-white rounded-md shadow-md ring-1 ring-gray-300 ring-opacity-5">
+                        <div className="py-1">
+                          <Link 
+                            to="/team" 
+                            className={`block px-4 py-2 text-sm ${location.pathname === '/team' ? 'text-[#23A6F0]' : 'text-gray-700 hover:bg-gray-100'}`}
+                          >
+                            Team
+                          </Link>
+                          <Link 
+                            to="/pricing" 
+                            className={`block px-4 py-2 text-sm ${location.pathname === '/pricing' ? 'text-[#23A6F0]' : 'text-gray-700 hover:bg-gray-100'}`}
+                          >
+                            Pricing
+                          </Link>
                         </div>
                       </Popover.Panel>
                     </Transition>
@@ -126,114 +117,15 @@ const Header = () => {
             </nav>
             
             {/* User Actions */}
-            <div className="hidden md:flex items-center space-x-6">
-              <div className="flex space-x-2">
-                <Link to="/login" className="text-[#23A6F0] hover:underline">Login</Link>
-                <span className="text-gray-400">/</span>
-                <Link to="/signup" className="text-[#23A6F0] hover:underline">Register</Link>
-              </div>
-              <div className="flex items-center space-x-4">
-                <Link to="/search" className="text-[#737373]">
-                  <Search size={20} />
-                </Link>
-                <Link to="/cart" className="text-[#23A6F0] relative">
-                  <ShoppingCart size={20} />
-                  
-                  <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
-                  
-                </Link>
-                <Link to="/wishlist" className="text-[#23A6F0] relative cursor-pointer">
-                  <Heart size={20} />
-                  
-                  <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
-                  
-                </Link>
-              </div>
-            </div>
-          </div>
-          
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="md:hidden mt-4 pb-4">
-              <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-3">
-                <Link 
-                  to="/login" 
-                  className="text-[#23A6F0] hover:underline cursor-pointer"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Login / Register
-                </Link>
-                <div className="flex items-center space-x-5">
-                  <Link to="/search" className="text-[#737373] cursor-pointer">
-                    <Search size={20} />
-                  </Link>
-                  <Link to="/cart" className="text-[#737373] relative cursor-pointer">
-                    <ShoppingCart size={20} />
-                    {/* 1 bildirimi 
-                    <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
-                    */}
-                  </Link>
-                  <Link to="/wishlist" className="text-[#737373] relative cursor-pointer">
-                    <Heart size={20} />
-                    {/* 1 bildirimi 
-                    <span className="absolute -top-2 -right-2 bg-[#ff2929] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
-                    */}
-                  </Link>
-                </div>
-              </div>
-              
-              <nav className="flex flex-col space-y-3">
-                <Link 
-                  to="/" 
-                  className={`${location.pathname === '/' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Home
-                </Link>
-                <Link 
-                  to="/shop" 
-                  className={`${location.pathname === '/shop' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Shop
-                </Link>
-                <Link 
-                  to="/about" 
-                  className={`${location.pathname === '/about' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  About
-                </Link>
-                <Link 
-                  to="/blog" 
-                  className={`${location.pathname === '/blog' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Blog
-                </Link>
-                <Link 
-                  to="/contact" 
-                  className={`${location.pathname === '/contact' ? 'text-[#23A6F0]' : 'text-[#737373]'} hover:text-[#23A6F0] font-medium py-2`}
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  Contact
-                </Link>
-                
-                {/* Mobil için More dropdown */}
+            <div className="flex items-center space-x-5">
+              {/* Kullanıcı bilgisi veya Login/Register linki */}
+              {user ? (
                 <Popover className="relative">
                   {({ open }) => (
                     <>
-                      <Popover.Button
-                        className={`
-                          ${open ? 'text-[#23A6F0]' : location.pathname === '/more' ? 'text-[#23A6F0]' : 'text-[#737373]'} 
-                          text-left hover:text-[#23A6F0] font-medium py-2 flex items-center focus:outline-none
-                        `}
-                      >
-                        <span>More</span>
-                        <ChevronDown
-                          className={`${open ? 'text-[#23A6F0] rotate-180' : 'text-[#737373]'} ml-1 h-4 w-4 transition-transform duration-200`}
-                          aria-hidden="true"
-                        />
+                      <Popover.Button className="flex items-center text-[#23A6F0] focus:outline-none">
+                        <User size={16} className="mr-1" />
+                        <span className="text-sm font-medium">{user.name}</span>
                       </Popover.Button>
                       <Transition
                         as={Fragment}
@@ -244,23 +136,26 @@ const Header = () => {
                         leaveFrom="opacity-100 translate-y-0"
                         leaveTo="opacity-0 translate-y-1"
                       >
-                        <Popover.Panel className="relative mt-2 w-full">
-                          <div className="overflow-hidden rounded-lg shadow-lg ring-1 ring-gray-200 ring-opacity-5">
-                            <div className="relative bg-white p-3 flex flex-col space-y-2">
-                              <Link
-                                to="/team"
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#23A6F0] rounded-md"
-                                onClick={() => setIsMenuOpen(false)}
-                              >
-                                Team
+                        <Popover.Panel className="absolute z-10 w-56 mt-3 right-0 bg-white rounded-md shadow-lg ring-1 ring-black ring-opacity-5">
+                          <div className="p-4">
+                            <div className="font-medium text-gray-800 mb-2">{user.name}</div>
+                            <div className="border-b border-gray-200 opacity-50 my-2"></div>
+                            <div className="py-1">
+                              <Link to="/profile" className="flex items-center px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md">
+                                <UserCircle size={16} className="mr-2" />
+                                Profile
                               </Link>
-                              <Link
-                                to="/pricing"
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-[#23A6F0] rounded-md"
-                                onClick={() => setIsMenuOpen(false)}
-                              >
-                                Pricing
+                              <Link to="/settings" className="flex items-center px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md">
+                                <Settings size={16} className="mr-2" />
+                                Settings
                               </Link>
+                              <button 
+                                onClick={handleLogout}
+                                className="flex items-center w-full text-left px-2 py-2 text-sm text-red-600 hover:bg-gray-100 rounded-md"
+                              >
+                                <LogOut size={16} className="mr-2" />
+                                Logout
+                              </button>
                             </div>
                           </div>
                         </Popover.Panel>
@@ -268,11 +163,55 @@ const Header = () => {
                     </>
                   )}
                 </Popover>
-              </nav>
+              ) : (
+                <Link to="/login" className="flex items-center text-[#23A6F0]">
+                  <User size={16} className="mr-1" />
+                  <span className="text-sm font-medium">Login / Register</span>
+                </Link>
+              )}
+              
+              <Link to="/search" className="text-[#23A6F0]">
+                <Search size={16} />
+              </Link>
+              <Link to="/cart" className="text-[#23A6F0] relative">
+                <ShoppingCart size={16} />
+                <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
+              </Link>
+              <Link to="/wishlist" className="text-[#23A6F0] relative">
+                <Heart size={16} />
+                <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
+              </Link>
             </div>
-          )}
+            
+            {/* Mobile Menu Button */}
+            <button className="md:hidden text-[#737373]" onClick={toggleMenu}>
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </div>
       </div>
+      
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-200">
+          <div className="container mx-auto px-4 py-4">
+            <nav className="flex flex-col space-y-4">
+              <Link to="/" className={`text-sm font-medium ${location.pathname === '/' ? 'text-[#23A6F0]' : 'text-[#737373]'}`}>Home</Link>
+              <Link to="/shop" className={`text-sm font-medium ${location.pathname === '/shop' ? 'text-[#23A6F0]' : 'text-[#737373]'}`}>Shop</Link>
+              <Link to="/about" className={`text-sm font-medium ${location.pathname === '/about' ? 'text-[#23A6F0]' : 'text-[#737373]'}`}>About</Link>
+              <Link to="/blog" className={`text-sm font-medium ${location.pathname === '/blog' ? 'text-[#23A6F0]' : 'text-[#737373]'}`}>Blog</Link>
+              <Link to="/contact" className={`text-sm font-medium ${location.pathname === '/contact' ? 'text-[#23A6F0]' : 'text-[#737373]'}`}>Contact</Link>
+              
+              {/* More menüsü için mobil görünüm */}
+              <div className="text-sm font-medium text-[#737373]">More</div>
+              <div className="pl-4 space-y-2">
+                <Link to="/team" className={`text-sm font-medium ${location.pathname === '/team' ? 'text-[#23A6F0]' : 'text-[#737373]'}`}>Team</Link>
+                <Link to="/pricing" className={`text-sm font-medium ${location.pathname === '/pricing' ? 'text-[#23A6F0]' : 'text-[#737373]'}`}>Pricing</Link>
+              </div>
+            </nav>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

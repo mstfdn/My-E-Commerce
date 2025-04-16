@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory, Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -10,6 +10,7 @@ import { loginUser } from '../store/actions/authActions';
 const Login = () => {
   const [loading, setLoading] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [avatarUrl, setAvatarUrl] = useState(''); // Gravatar URL için state
   const history = useHistory();
   const location = useLocation();
   const dispatch = useDispatch();
@@ -17,7 +18,15 @@ const Login = () => {
   // Önceki sayfa bilgisini al (eğer varsa)
   const prevPath = location.state?.from || '/';
   
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
+  
+  // E-posta değiştiğinde Gravatar URL'ini güncelle
+  const emailValue = watch('email');
+  useEffect(() => {
+    if (emailValue) {
+      setAvatarUrl(getGravatarUrl(emailValue));
+    }
+  }, [emailValue]);
   
   const onSubmit = async (data) => {
     setLoading(true);
@@ -40,7 +49,7 @@ const Login = () => {
   // Gravatar URL'ini oluşturan yardımcı fonksiyon
   const getGravatarUrl = (email) => {
     const hash = md5(email.trim().toLowerCase());
-    return `https://www.gravatar.com/avatar/${hash}?d=identicon`;
+    return `https://www.gravatar.com/avatar/${hash}?d=identicon&s=200`;
   };
   
   return (
@@ -49,6 +58,24 @@ const Login = () => {
         <div className="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
           <div className="px-6 py-8">
             <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Login</h2>
+            
+            {/* Gravatar Önizleme */}
+            {emailValue && (
+              <div className="flex flex-col items-center mb-6">
+                <div className="w-20 h-20 rounded-full overflow-hidden mb-2">
+                  <img 
+                    src={avatarUrl} 
+                    alt="Profil Resmi" 
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = "https://www.gravatar.com/avatar/?d=mp&s=200"; // Varsayılan avatar
+                    }}
+                  />
+                </div>
+                <p className="text-sm text-gray-500">Gravatar Profil Resminiz</p>
+              </div>
+            )}
             
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               {/* E-posta Alanı */}
@@ -71,6 +98,7 @@ const Login = () => {
                 {errors.email && <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>}
               </div>
               
+              {/* Diğer form alanları aynı kalıyor... */}
               {/* Şifre Alanı */}
               <div>
                 <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
