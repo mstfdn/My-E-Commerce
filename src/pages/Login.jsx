@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory, Link } from 'react-router-dom';
-import api from '../auth/api';
+import { useHistory, Link, useLocation } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import md5 from 'md5';
+// Düzeltilmiş import
+import { loginUser } from '../store/actions/authActions';
 
 const Login = () => {
   const [loading, setLoading] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const history = useHistory();
+  const location = useLocation();
+  const dispatch = useDispatch();
+  
+  // Önceki sayfa bilgisini al (eğer varsa)
+  const prevPath = location.state?.from || '/';
   
   const { register, handleSubmit, formState: { errors } } = useForm();
   
@@ -14,20 +23,24 @@ const Login = () => {
     setLoading(true);
     
     try {
-      const response = await api.post('/login', data);
+      // Redux thunk action'ı ile login işlemini gerçekleştir
+      const result = await dispatch(loginUser(data, history, rememberMe, prevPath));
       
-      // Başarılı giriş durumunda token'ı localStorage'a kaydet
-      localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', JSON.stringify(response.data.user));
-      
-      toast.success('Giriş başarılı!');
-      history.push('/'); // Ana sayfaya yönlendir
+      if (!result.success) {
+        throw new Error(result.error);
+      }
     } catch (error) {
       console.error('Giriş yapılırken hata:', error);
-      toast.error(error.response?.data?.message || 'Giriş sırasında bir hata oluştu. Lütfen bilgilerinizi kontrol edin.');
+      // Hata mesajı toast ile gösterilecek (loginUser action'ında)
     } finally {
       setLoading(false);
     }
+  };
+  
+  // Gravatar URL'ini oluşturan yardımcı fonksiyon
+  const getGravatarUrl = (email) => {
+    const hash = md5(email.trim().toLowerCase());
+    return `https://www.gravatar.com/avatar/${hash}?d=identicon`;
   };
   
   return (
@@ -74,6 +87,20 @@ const Login = () => {
                 {errors.password && <p className="mt-1 text-sm text-red-500">{errors.password.message}</p>}
               </div>
               
+              {/* Beni Hatırla Seçeneği */}
+              <div className="flex items-center">
+                <input
+                  id="remember-me"
+                  type="checkbox"
+                  className="h-4 w-4 text-blue-500 border-gray-300 rounded focus:ring-blue-500"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                />
+                <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
+                  Remember me
+                </label>
+              </div>
+              
               {/* Şifremi Unuttum Linki */}
               <div className="flex justify-end">
                 <Link to="/forgot-password" className="text-sm text-blue-500 hover:text-blue-600">
@@ -90,14 +117,14 @@ const Login = () => {
                 >
                   {loading ? (
                     <span className="flex items-center justify-center">
-                      <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                         <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                         <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                       </svg>
                       Giriş Yapılıyor...
                     </span>
                   ) : (
-                    'Login'
+                    'Giriş Yap'
                   )}
                 </button>
               </div>
@@ -105,11 +132,21 @@ const Login = () => {
               {/* Kayıt Ol Linki */}
               <div className="text-center mt-4">
                 <p className="text-sm text-gray-600">
-                  Don't have an accout{' '}
-                  <Link to="/signup" className="text-blue-500 hover:text-blue-600">
-                    Register
+                  Hesabınız yok mu?{' '}
+                  <Link to="/signup" className="text-blue-500 hover:text-blue-600 font-medium">
+                    Kayıt Ol
                   </Link>
                 </p>
+              </div>
+              
+              {/* Test Kullanıcıları Bilgisi */}
+              <div className="mt-6 p-4 bg-gray-50 rounded-md">
+                <p className="text-sm text-gray-600 font-medium mb-2">Test Kullanıcıları:</p>
+                <ul className="text-xs text-gray-500 space-y-1">
+                  <li>customer@commerce.com (Şifre: 123456)</li>
+                  <li>store@commerce.com (Şifre: 123456)</li>
+                  <li>admin@commerce.com (Şifre: 123456)</li>
+                </ul>
               </div>
             </form>
           </div>
