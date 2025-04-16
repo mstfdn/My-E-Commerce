@@ -84,7 +84,7 @@ const SignUp = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
           <div className="px-6 py-8">
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Hesap Oluştur</h2>
+            <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Create Account</h2>
             
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               {/* İsim Alanı */}
@@ -165,7 +165,7 @@ const SignUp = () => {
               {/* Rol Seçimi */}
               <div>
                 <label htmlFor="role_id" className="block text-sm font-medium text-gray-700 mb-1">
-                  Hesap Türü
+                  Account Type
                 </label>
                 <select
                   id="role_id"
@@ -283,7 +283,7 @@ const SignUp = () => {
                       Kaydediliyor...
                     </span>
                   ) : (
-                    'Kayıt Ol'
+                    'Register'
                   )}
                 </button>
               </div>
@@ -291,9 +291,9 @@ const SignUp = () => {
               {/* Giriş Yap Linki */}
               <div className="text-center mt-4">
                 <p className="text-sm text-gray-600">
-                  Zaten bir hesabınız var mı?{' '}
+                Do you already have an account?{' '}
                   <a href="/login" className="text-blue-500 hover:text-blue-600">
-                    Giriş Yap
+                    Login
                   </a>
                 </p>
               </div>

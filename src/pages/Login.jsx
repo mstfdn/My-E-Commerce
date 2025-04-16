@@ -35,7 +35,7 @@ const Login = () => {
       <div className="container mx-auto px-4">
         <div className="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
           <div className="px-6 py-8">
-            <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Giriş Yap</h2>
+            <h2 className="text-2xl font-bold text-center text-gray-800 mb-8">Login</h2>
             
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               {/* E-posta Alanı */}
@@ -77,7 +77,7 @@ const Login = () => {
               {/* Şifremi Unuttum Linki */}
               <div className="flex justify-end">
                 <Link to="/forgot-password" className="text-sm text-blue-500 hover:text-blue-600">
-                  Şifremi Unuttum
+                  Forgot my password
                 </Link>
               </div>
               
@@ -97,7 +97,7 @@ const Login = () => {
                       Giriş Yapılıyor...
                     </span>
                   ) : (
-                    'Giriş Yap'
+                    'Login'
                   )}
                 </button>
               </div>
@@ -105,9 +105,9 @@ const Login = () => {
               {/* Kayıt Ol Linki */}
               <div className="text-center mt-4">
                 <p className="text-sm text-gray-600">
-                  Hesabınız yok mu?{' '}
+                  Don't have an accout{' '}
                   <Link to="/signup" className="text-blue-500 hover:text-blue-600">
-                    Kayıt Ol
+                    Register
                   </Link>
                 </p>
               </div>
