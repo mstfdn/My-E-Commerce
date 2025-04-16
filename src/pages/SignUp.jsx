@@ -25,6 +25,7 @@ const SignUp = () => {
         setRoles(response.data);
       } catch (error) {
         console.error('Roller yüklenirken hata oluştu:', error);
+        toast.error('Roller yüklenirken bir hata oluştu. Lütfen sayfayı yenileyin.');
       }
     };
     
@@ -35,52 +36,63 @@ const SignUp = () => {
     setLoading(true);
     
     try {
-      // E-posta adresini benzersiz yapmak için timestamp ekleyelim
-      const timestamp = new Date().getTime();
-      data.email = data.email.replace('@', `_${timestamp}@`);
+      // API'ye gönderilecek veriyi hazırla
+      const signupData = {
+        name: data.name,
+        email: data.email,
+        password: data.password,
+        role_id: parseInt(data.role_id), // String'den number'a çevir
+      };
       
       // Eğer seçilen rol "store" ise, store bilgilerini ekle
       if (data.role_id === "3") {
-        data.store = {
+        signupData.store = {
           name: data.store_name,
           phone: data.store_phone,
-          tax_no: data.store_tax_no,
-          bank_account: data.store_bank_account
+          tax_no: data.store_tax_no || 'T0000V000000',
+          bank_account: data.store_bank_account || 'TR000000000000000000000000'
         };
-        
-        // Form verilerinden store ile ilgili fazlalık alanları temizle
-        delete data.store_name;
-        delete data.store_phone;
-        delete data.store_tax_no;
-        delete data.store_bank_account;
       }
       
-      // Şifre doğrulama alanını kaldır
-      delete data.password_confirm;
+      console.log('Gönderilen veri:', signupData);
       
-      // Aktivasyon gerektirmeden doğrudan aktif hesap oluşturmak için
-      data.active = true;
+      // API isteği gönder - doğru endpoint'i kullan
+      const response = await api.post('/signup', signupData);
       
-      const response = await api.post('/signup', data);
-      
+      console.log('Kayıt başarılı:', response.data);
       toast.success('Kayıt başarılı! Şimdi giriş yapabilirsiniz.');
-      history.push('/login'); // Doğrudan login sayfasına yönlendir
+      history.push('/login');
     } catch (error) {
+      // Hata işleme kodu aynı kalıyor
       console.error('Kayıt olurken hata:', error);
       
-      // SQLITE_CONSTRAINT hatası için özel mesaj
-      if (error.response?.data?.err?.code === 'SQLITE_CONSTRAINT') {
-        toast.error('Bu e-posta adresi veya rol zaten kullanılıyor. Lütfen farklı bilgiler deneyin.');
+      // Hata mesajlarını daha detaylı göster
+      if (error.response) {
+        console.log('Hata yanıtı:', error.response.data);
+        
+        // API'nin döndüğü hata mesajını göster
+        const errorMessage = error.response.data?.message || 
+                            error.response.data?.error || 
+                            'Kayıt sırasında bir hata oluştu.';
+        
+        toast.error(errorMessage);
+      } else if (error.request) {
+        // İstek yapıldı ama yanıt alınamadı
+        toast.error('Sunucu yanıt vermiyor. Lütfen daha sonra tekrar deneyin.');
       } else {
-        toast.error(error.response?.data?.message || 'Kayıt sırasında bir hata oluştu.');
+        // İstek oluşturulurken bir hata oluştu
+        toast.error('Bir hata oluştu: ' + error.message);
       }
     } finally {
       setLoading(false);
     }
   };
   
+  // Form içeriği aynı kalıyor...
+  
   return (
     <div className="min-h-screen bg-gray-50 py-12">
+      {/* Form içeriği aynı kalıyor... */}
       <div className="container mx-auto px-4">
         <div className="max-w-md mx-auto bg-white rounded-lg shadow-md overflow-hidden">
           <div className="px-6 py-8">
@@ -234,7 +246,7 @@ const SignUp = () => {
                       className={`w-full px-3 py-2 border ${errors.store_tax_no ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                       placeholder="TXXXXVXXXXXX"
                       {...register('store_tax_no', { 
-                        required: 'Vergi numarası zorunludur',
+                        
                         pattern: { 
                           value: /^T[0-9]{4}V[0-9]{6}$/,
                           message: 'Vergi numarası TXXXXVXXXXXX formatında olmalıdır' 
@@ -255,7 +267,7 @@ const SignUp = () => {
                       className={`w-full px-3 py-2 border ${errors.store_bank_account ? 'border-red-500' : 'border-gray-300'} rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500`}
                       placeholder="TR..."
                       {...register('store_bank_account', { 
-                        required: 'IBAN zorunludur',
+                        
                         pattern: { 
                           value: /^TR[0-9]{2}[0-9]{5}[A-Z0-9]{17}$/,
                           message: 'Geçerli bir IBAN giriniz' 

@@ -156,23 +156,13 @@ const Header = () => {
           {isMenuOpen && (
             <div className="md:hidden mt-4 pb-4">
               <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-3">
-                <div className="flex space-x-2">
-                  <Link 
-                    to="/login" 
-                    className="text-[#23A6F0] hover:underline cursor-pointer"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Login
-                  </Link>
-                  <span className="text-gray-400">/</span>
-                  <Link 
-                    to="/signup" 
-                    className="text-[#23A6F0] hover:underline cursor-pointer"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Register
-                  </Link>
-                </div>
+                <Link 
+                  to="/login" 
+                  className="text-[#23A6F0] hover:underline cursor-pointer"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Login / Register
+                </Link>
                 <div className="flex items-center space-x-5">
                   <Link to="/search" className="text-[#737373] cursor-pointer">
                     <Search size={20} />
