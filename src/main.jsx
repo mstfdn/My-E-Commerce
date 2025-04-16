@@ -11,6 +11,7 @@ import Blog from './pages/Blog'
 import BlogDetail from './layout/BlogDetail'
 import TeamDetail from './layout/TeamDetail'
 import AboutDetail from './layout/AboutDetail'
+import Pricing from './pages/Pricing'
 
 const App = () => {
   return (
@@ -42,6 +43,9 @@ const App = () => {
             </Route>
             <Route exact path="/about">
               <AboutDetail />
+            </Route>
+            <Route exact path="/pricing">
+              <Pricing />
             </Route>
             {/* Add more routes as needed */}
           </Switch>
