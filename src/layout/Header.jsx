@@ -466,39 +466,7 @@ const Header = () => {
         <div className="md:hidden bg-white border-t border-gray-200">
           <div className="container mx-auto px-4 py-4">
             <nav className="flex flex-col space-y-4">
-              {activeUser && (
-                <div className="bg-gray-50 p-3 rounded-md mb-2">
-                  <div className="font-medium text-gray-800 mb-1 flex items-center">
-                    <User size={16} className="mr-2 text-[#23A6F0]" />
-                    {activeUser.name}
-                  </div>
-                  <div className="flex flex-col space-y-2 mt-2 pl-6">
-                    <Link 
-                      to="/orders" 
-                      className="text-sm text-gray-700"
-                      onClick={handleMenuLinkClick}
-                    >
-                      Siparişlerim
-                    </Link>
-                    <Link 
-                      to="/settings" 
-                      className="text-sm text-gray-700"
-                      onClick={handleMenuLinkClick}
-                    >
-                      Ayarlar
-                    </Link>
-                    <button 
-                      onClick={() => {
-                        handleLogout();
-                        handleMenuLinkClick();
-                      }}
-                      className="text-sm text-red-600 text-left"
-                    >
-                      Çıkış Yap
-                    </button>
-                  </div>
-                </div>
-              )}
+              
               
               <Link 
                 to="/" 
