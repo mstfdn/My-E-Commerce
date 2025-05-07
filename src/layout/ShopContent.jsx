@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { ChevronRight, ShoppingCart, Heart, Eye, BarChart2 } from 'lucide-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCategories, fetchProducts } from '../store/actions/productActions';
+import { addToCart } from '../store/actions/cartActions'; // Import cart action
 
 const ShopContent = () => {
   const dispatch = useDispatch();
@@ -17,9 +18,9 @@ const ShopContent = () => {
   const [filterText, setFilterText] = useState('');
   const [tempFilterText, setTempFilterText] = useState('');
   const [sortedProducts, setSortedProducts] = useState([]);
-  const [isFiltering, setIsFiltering] = useState(false); // Filtre animasyonu için
-  const [fadeOut, setFadeOut] = useState(false); // Fade-out animasyonu için
-  const [fadeIn, setFadeIn] = useState(false); // Fade-in animasyonu için
+  const [isFiltering, setIsFiltering] = useState(false);
+  const [fadeOut, setFadeOut] = useState(false);
+  const [fadeIn, setFadeIn] = useState(false);
   
   // Kategorileri cinsiyete göre ayırma
   const womenCategories = categories.filter(cat => cat.gender === 'k');
@@ -179,11 +180,19 @@ const ShopContent = () => {
   // Products to display - use sortedProducts if available, otherwise use products
   const displayProducts = (sortedProducts.length > 0 ? sortedProducts : products).slice(0, 12);
 
-  // Sepete ekle işlemi
-  const handleAddToCart = (e, productId) => {
+  // Sepete ekle işlemi - GÜNCELLENDI
+  const handleAddToCart = (e, product) => {
     e.preventDefault(); // Link'in yönlendirmesini engelle
-    console.log(`Ürün sepete eklendi: ${productId}`);
-    // Burada sepete ekleme işlemi yapabilirsiniz (Redux action dispatch edebilirsiniz)
+    e.stopPropagation(); // Event yayılımını engelle
+    
+    // Redux action'ı ile sepete ekleme
+    dispatch(addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      imageUrl: product.imageUrl || `/urun${(product.id % 6) + 1}.png`,
+      quantity: 1
+    }));
   };
 
   if (loading) {
@@ -255,7 +264,7 @@ const ShopContent = () => {
         </div>
       </div>
 
-      {/* Filter Section - Güncellendi */}
+      {/* Filter Section */}
       <div className="flex flex-wrap justify-between items-center mb-8 bg-[#FAFAFA] p-4 rounded">
         <div className="mb-4 md:mb-0">
           <p className="text-sm text-[#737373]">
@@ -304,7 +313,7 @@ const ShopContent = () => {
         </div>
       </div>
 
-      {/* Products Grid */}
+      {/* Products Grid - GÜNCELLENDI */}
       <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12 relative transition-opacity duration-300 ${fadeOut ? 'opacity-0' : fadeIn ? 'opacity-100' : ''}`}>
         {displayProducts.length === 0 ? (
           <div className="col-span-full text-center py-12 text-gray-500">
@@ -332,7 +341,7 @@ const ShopContent = () => {
                   <img 
                     src={product.imageUrl || `/urun${(index % 6) + 1}.png`}
                     alt={product.name} 
-                    className="w-full h-64 object-cover cursor-pointer transition-transform duration-500 hover:scale-105"
+                    className="w-[239px] h-[300px] object-cover cursor-pointer transition-transform hover:scale-105"
                   />
                   {product.discount && (
                     <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
@@ -340,7 +349,7 @@ const ShopContent = () => {
                     </span>
                   )}
                   
-                  {/* Hızlı Erişim Butonları - Hover durumunda görünür */}
+                  {/* Hızlı Erişim Butonları */}
                   <div className="absolute right-2 top-2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                     <button 
                       onClick={(e) => {
@@ -369,7 +378,7 @@ const ShopContent = () => {
                   <h4 className="text-base font-bold text-[#252B42] mb-2 line-clamp-1">{product.name}</h4>
                   <p className="text-sm text-[#737373] mb-2">{product.category}</p>
                   
-                  {/* Product Features - Yeni eklenen kısım */}
+                  {/* Product Features */}
                   <div className="flex justify-center gap-2 mb-2 text-xs text-gray-500">
                     <span className="flex items-center gap-1">
                       <BarChart2 size={14} />
@@ -387,21 +396,16 @@ const ShopContent = () => {
                   </div>
                   
                   <div className="flex justify-center mt-2 space-x-1 mb-3">
-                    {product.colors && product.colors.map((color, index) => (
-                      <span 
-                        key={index}
-                        className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full"
-                        style={{ backgroundColor: color }}
-                      ></span>
-                    ))}
+                    <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
+                    <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
+                    <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
+                    <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
                   </div>
-
-                  <div class="flex justify-center mt-2 space-x-1"><span class="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span><span class="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span><span class="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span><span class="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span></div>
                   
-                  {/* Sepete Ekle Butonu - Yeni eklenen kısım */}
+                  {/* Sepete Ekle Butonu - GÜNCELLENDI */}
                   <button 
-                    onClick={(e) => handleAddToCart(e, product.id)}
-                    className="w-full py-2 bg-[#23A6F0] text-white rounded flex items-center justify-center gap-2 hover:bg-[#1A8CD8] transition-colors mt-2"
+                    onClick={(e) => handleAddToCart(e, product)}
+                    className="cursor-pointer w-full py-2 bg-[#23A6F0] text-white rounded flex items-center justify-center gap-2 hover:bg-[#1A8CD8] transition-colors mt-2"
                   >
                     <ShoppingCart size={16} />
                     <span>Sepete Ekle</span>

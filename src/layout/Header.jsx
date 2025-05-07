@@ -1,11 +1,12 @@
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, Search, ShoppingCart, Heart, Menu, X, ChevronDown, User, Settings, UserCircle, LogOut } from 'lucide-react';
+import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, Search, ShoppingCart, Heart, Menu, X, ChevronDown, User, Settings, UserCircle, LogOut, Trash, Plus, Minus } from 'lucide-react';
 import { Popover, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { logoutUser } from '../store/actions/authActions';
 import { fetchCategories } from '../store/actions/productActions';
+import { removeFromCart, updateCartQuantity } from '../store/actions/cartActions';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,9 +15,13 @@ const Header = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   
-  // Redux store'dan kullanıcı ve kategori bilgilerini çekme
+  // Redux store'dan kullanıcı, kategori ve sepet bilgilerini çekme
   const userFromRedux = useSelector(state => state.client?.user);
   const categories = useSelector(state => state.product?.categories || []);
+  const cartItems = useSelector(state => state.cart?.items || []);
+  const cartTotalItems = useSelector(state => state.cart?.totalItems || 0);
+  const cartTotalAmount = useSelector(state => state.cart?.totalAmount || 0);
+  
   const [userFromStorage, setUserFromStorage] = useState(null);
   
   // Kategorileri gruplandırma fonksiyonu
@@ -74,6 +79,26 @@ const Header = () => {
   const handleLogout = () => {
     dispatch(logoutUser());
     history.push('/login');
+  };
+
+  // Sepetten ürün silme
+  const handleRemoveFromCart = (e, productId) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(removeFromCart(productId));
+  };
+
+  // Sepet ürün miktarını güncelleme
+  const handleUpdateQuantity = (e, productId, newQuantity) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (newQuantity < 1) return;
+    dispatch(updateCartQuantity(productId, newQuantity));
+  };
+
+  // Sepeti onayla butonu
+  const handleCheckout = () => {
+    history.push('/checkout');
   };
 
   // Kategorileri gruplandır
@@ -306,10 +331,122 @@ const Header = () => {
               <Link to="/search" className="text-[#23A6F0]">
                 <Search size={16} />
               </Link>
-              <Link to="/cart" className="text-[#23A6F0] relative">
-                <ShoppingCart size={16} />
-                <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
-              </Link>
+              
+              {/* Sepet Popover */}
+              <Popover className="relative">
+                {({ open, close }) => (
+                  <>
+                    <Popover.Button className="text-[#23A6F0] relative focus:outline-none">
+                      <ShoppingCart size={16} />
+                      {cartTotalItems > 0 && (
+                        <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                          {cartTotalItems}
+                        </span>
+                      )}
+                    </Popover.Button>
+                    <Transition
+                      as={Fragment}
+                      enter="transition ease-out duration-200"
+                      enterFrom="opacity-0 translate-y-1"
+                      enterTo="opacity-100 translate-y-0"
+                      leave="transition ease-in duration-150"
+                      leaveFrom="opacity-100 translate-y-0"
+                      leaveTo="opacity-0 translate-y-1"
+                    >
+                      <Popover.Panel className="absolute z-50 w-72 mt-3 right-0 bg-white rounded-md shadow-lg ring-1 ring-gray-400 ring-opacity-5">
+                        <div className="p-4">
+                          <div className="font-medium text-gray-800 mb-2 flex justify-between items-center">
+                            <span>Sepetim ({cartTotalItems})</span>
+                            <Link to="/cart" className="text-sm text-[#23A6F0] hover:underline" onClick={() => close()}>
+                              Sepete Git
+                            </Link>
+                          </div>
+                          
+                          <div className="border-b border-gray-200 opacity-50 my-2"></div>
+                          
+                          {/* Sepet Öğeleri */}
+                          <div className="max-h-64 overflow-y-auto py-2">
+                            {cartItems.length === 0 ? (
+                              <div className="text-center py-4 text-gray-500">
+                                Sepetiniz boş
+                              </div>
+                            ) : (
+                              cartItems.map(item => (
+                                <div key={item.id} className="flex items-center py-2 border-b border-gray-100 last:border-b-0">
+                                  <Link to={`/product/${item.id}`} className="flex-shrink-0" onClick={() => close()}>
+                                    <img 
+                                      src={item.imageUrl} 
+                                      alt={item.name} 
+                                      className="w-12 h-16 object-cover rounded"
+                                    />
+                                  </Link>
+                                  <div className="ml-3 flex-grow">
+                                    <Link 
+                                      to={`/product/${item.id}`} 
+                                      className="text-sm font-medium text-gray-800 line-clamp-1 hover:text-[#23A6F0]"
+                                      onClick={() => close()}
+                                    >
+                                      {item.name}
+                                    </Link>
+                                    <div className="flex items-center justify-between mt-1">
+                                      <div className="flex items-center">
+                                        <button
+                                          onClick={(e) => handleUpdateQuantity(e, item.id, item.quantity - 1)}
+                                          className="p-1 text-gray-500 hover:text-[#23A6F0]"
+                                        >
+                                          <Minus size={12} />
+                                        </button>
+                                        <span className="px-2 text-sm">{item.quantity}</span>
+                                        <button
+                                          onClick={(e) => handleUpdateQuantity(e, item.id, item.quantity + 1)}
+                                          className="p-1 text-gray-500 hover:text-[#23A6F0]"
+                                        >
+                                          <Plus size={12} />
+                                        </button>
+                                      </div>
+                                      <span className="text-sm font-medium text-[#23856D]">${(item.price * item.quantity).toFixed(2)}</span>
+                                    </div>
+                                  </div>
+                                  <button
+                                    onClick={(e) => handleRemoveFromCart(e, item.id)}
+                                    className="ml-2 text-gray-400 hover:text-red-500"
+                                  >
+                                    <Trash size={14} />
+                                  </button>
+                                </div>
+                              ))
+                            )}
+                          </div>
+                          
+                          {/* Toplam Tutar */}
+                          {cartItems.length > 0 && (
+                            <>
+                              <div className="border-t border-gray-200 mt-2 pt-2">
+                                <div className="flex justify-between items-center font-medium">
+                                  <span className="text-gray-700">Toplam:</span>
+                                  <span className="text-[#23856D]">${cartTotalAmount.toFixed(2)}</span>
+                                </div>
+                              </div>
+                              
+                              {/* Sepeti Onayla Butonu */}
+                              <button
+                                onClick={() => {
+                                  handleCheckout();
+                                  close();
+                                }}
+                                className="w-full mt-3 py-2 bg-[#23A6F0] text-white rounded flex items-center justify-center hover:bg-[#1A8CD8] transition-colors"
+                              >
+                                Sepeti Onayla
+                              </button>
+                            </>
+                          )}
+                        </div>
+                      </Popover.Panel>
+                    </Transition>
+                  </>
+                )}
+              </Popover>
+              
               <Link to="/wishlist" className="text-[#23A6F0] relative">
                 <Heart size={16} />
                 <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
@@ -432,6 +569,34 @@ const Header = () => {
                   </div>
                 )}
               </div>
+              
+              {/* Mobil Sepet Özeti */}
+              {cartItems.length > 0 && (
+                <div className="mt-4 pt-4 border-t border-gray-200">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="font-medium text-gray-700">Sepetim ({cartTotalItems})</span>
+                    <Link 
+                      to="/cart" 
+                      className="text-sm text-[#23A6F0]"
+                      onClick={handleMenuLinkClick}
+                    >
+                      Sepete Git
+                    </Link>
+                  </div>
+                  
+                  <div className="text-sm text-gray-600">
+                    Toplam: <span className="font-medium text-[#23856D]">${cartTotalAmount.toFixed(2)}</span>
+                  </div>
+                  
+                  <Link 
+                    to="/checkout" 
+                    className="mt-2 block w-full py-2 bg-[#23A6F0] text-white text-center rounded"
+                    onClick={handleMenuLinkClick}
+                  >
+                    Sepeti Onayla
+                  </Link>
+                </div>
+              )}
             </nav>
           </div>
         </div>
