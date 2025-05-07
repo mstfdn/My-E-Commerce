@@ -54,6 +54,9 @@ const AppContent = () => {
           <Route exact path="/shop">
             <Shop />
           </Route>
+          <Route path="/shop/:gender/:categoryName/:categoryId">
+            <Shop />
+          </Route>
           <Route path="/product/:id">
             <ProductDetailPage />
           </Route>

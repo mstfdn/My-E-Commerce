@@ -1,62 +1,105 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchCategories, fetchProducts } from '../store/actions/productActions';
 
 const ShopContent = () => {
+  const dispatch = useDispatch();
+  const { gender, categoryName, categoryId } = useParams();
+  const categories = useSelector(state => state.product?.categories || []);
+  const fetchState = useSelector(state => state.product?.fetchState);
+  const loading = useSelector(state => state.product?.loading);
+  const error = useSelector(state => state.product?.error);
+  
+  // Kategorileri cinsiyete göre ayırma
+  const womenCategories = categories.filter(cat => cat.gender === 'k');
+  const menCategories = categories.filter(cat => cat.gender === 'e');
+  
+  // Top kategorileri seçme
+  const topCategories = [...categories]
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 5);
+  
+  useEffect(() => {
+    if (fetchState === 'NOT_FETCHED') {
+      dispatch(fetchCategories());
+    }
+  }, [dispatch, fetchState]);
+  
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, [dispatch]);
+
+  if (loading) {
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-[#23A6F0]"></div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="text-red-500 text-center py-8">
+        Ürünler yüklenirken bir hata oluştu: {error}
+      </div>
+    );
+  }
+
   return (
     <div className="container mx-auto px-4 py-8">
       {/* Shop Header */}
-      <div className="flex justify-between items-center mb-8 max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold text-[#252B42]">Shop</h1>
-        <div className="flex items-center text-[#737373]">
-          <Link to="/" className="hover:text-[#23A6F0]">Home</Link>
-          <ChevronRight size={16} className="mx-2" />
-          <span className="text-[#23A6F0]">Shop</span>
+      <div className="mb-12">
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-3xl font-bold text-[#252B42]">
+            {gender && categoryName ? `${gender === 'kadin' ? 'Kadın' : 'Erkek'} - ${categoryName}` : 'Shop'}
+          </h1>
+          <div className="flex items-center text-[#737373]">
+            <Link to="/" className="hover:text-[#23A6F0]">Home</Link>
+            <ChevronRight size={16} className="mx-2" />
+            <Link to="/shop" className="hover:text-[#23A6F0]">Shop</Link>
+            {gender && (
+              <>
+                <ChevronRight size={16} className="mx-2" />
+                <Link to={`/shop/${gender}`} className="hover:text-[#23A6F0]">
+                  {gender === 'kadin' ? 'Kadın' : 'Erkek'}
+                </Link>
+              </>
+            )}
+            {categoryName && (
+              <>
+                <ChevronRight size={16} className="mx-2" />
+                <span className="text-[#23A6F0]">{categoryName}</span>
+              </>
+            )}
+          </div>
         </div>
       </div>
 
-      {/* Categories Grid */}
-      <div className="flex flex-wrap justify-center gap-4 mb-12">
-        <div className="relative group overflow-hidden rounded">
-          <img 
-            src="/card1.png" 
-            alt="Clothes Category" 
-            className="w-[260px] h-[260px] object-cover cursor-pointer transition-transform duration-300 group-hover:scale-110"
-          />
-        </div>
-        
-        <div className="relative group overflow-hidden rounded">
-          <img 
-            src="/card2.png" 
-            alt="Clothes Category" 
-            className="cursor-pointer w-[260px] h-[260px] object-cover transition-transform duration-300 group-hover:scale-110"
-          />
-        </div>
-        
-        <div className="relative group overflow-hidden rounded">
-          <img 
-            src="/card3.png" 
-            alt="Clothes Category" 
-            className="cursor-pointer w-[260px] h-[260px] object-cover transition-transform duration-300 group-hover:scale-110"
-          />
-        </div>
-        
-        <div className="relative group overflow-hidden rounded">
-          <img 
-            src="/card4.png" 
-            alt="Clothes Category" 
-            className="cursor-pointer w-[260px] h-[260px] object-cover transition-transform duration-300 group-hover:scale-110"
-          />
-        </div>
-        
-        <div className="relative group overflow-hidden rounded">
-          <img 
-            src="/card5.png" 
-            alt="Clothes Category" 
-            className="cursor-pointer w-[260px] h-[260px] object-cover transition-transform duration-300 group-hover:scale-110"
-          />
+      {/* Top Categories Grid */}
+      <div className="mb-12">
+        <h2 className="text-3xl font-bold text-[#252B42] mb-6"></h2>
+        <div className="flex flex-wrap justify-center gap-4">
+          {topCategories.map(category => (
+            <Link 
+              key={category.id}
+              to={`/shop/${category.gender === 'k' ? 'kadin' : 'erkek'}/${category.title.toLowerCase()}/${category.id}`}
+              className="relative group overflow-hidden rounded"
+            >
+              <img 
+                src={category.img || "/card1.png"} 
+                alt={category.title} 
+                className="w-[260px] h-[260px] object-cover cursor-pointer transition-transform duration-300 group-hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                <h3 className="text-white text-xl font-bold">{category.title}</h3>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
+
       {/* Filter Section */}
       <div className="flex flex-wrap justify-between items-center mb-8 bg-[#FAFAFA] p-4 rounded">
         <div className="mb-4 md:mb-0">
