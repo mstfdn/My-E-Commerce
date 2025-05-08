@@ -11,6 +11,20 @@ const ProductDetail = ({ productId }) => {
   const [currentImage, setCurrentImage] = useState(0); // Ana görsel için state ekledim
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const dispatch = useDispatch(); // dispatch'i tanımlayalım
+
+  // handleAddToCart fonksiyonunu ekleyelim
+  const handleAddToCart = () => {
+    if (product) {
+      dispatch(addToCart({
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        imageUrl: product.imageUrl || `/urun${(product.id % 6) + 1}.png`,
+        quantity: 1
+      }));
+    }
+  };
 
   // Ürün verilerini axios ile çekme
   useEffect(() => {

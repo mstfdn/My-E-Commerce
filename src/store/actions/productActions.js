@@ -54,11 +54,17 @@ export const fetchCategories = () => {
 };
 
 
-export const fetchProducts = () => async (dispatch) => {
+export const fetchProducts = (limit = 25, offset = 0, filter = '') => async (dispatch) => {
   try {
     dispatch({ type: 'FETCH_PRODUCTS_START' });
     
-    const response = await fetch('https://workintech-fe-ecommerce.onrender.com/products');
+    let url = `https://workintech-fe-ecommerce.onrender.com/products?limit=${limit}&offset=${offset}`;
+    
+    if (filter) {
+      url += `&filter=${filter}`;
+    }
+    
+    const response = await fetch(url);
     
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
@@ -70,13 +76,32 @@ export const fetchProducts = () => async (dispatch) => {
       type: 'FETCH_PRODUCTS_SUCCESS',
       payload: {
         products: data.products,
-        total: data.total
+        total: data.total,
+        limit,
+        offset
       }
     });
+
+    return data;
   } catch (error) {
     dispatch({ 
       type: 'FETCH_PRODUCTS_FAILURE',
       payload: error.message 
     });
+    return null;
   }
+};
+
+export const loadMoreProducts = () => (dispatch, getState) => {
+  const { limit, offset, filter, loading } = getState().product;
+  
+  // Eğer zaten yükleme yapılıyorsa, yeni istek gönderme
+  if (loading) return;
+  
+  // Yeni offset değeri
+  const newOffset = offset + limit;
+  
+  // Yeni ürünleri getir
+  dispatch({ type: 'LOAD_MORE_PRODUCTS_START' });
+  return dispatch(fetchProducts(limit, newOffset, filter));
 };

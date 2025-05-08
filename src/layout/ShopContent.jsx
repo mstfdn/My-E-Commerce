@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef, useCallback } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ChevronRight, ShoppingCart, Heart, Eye, BarChart2 } from 'lucide-react';
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchCategories, fetchProducts } from '../store/actions/productActions';
+import { fetchCategories, fetchProducts, loadMoreProducts } from '../store/actions/productActions';
 import { addToCart } from '../store/actions/cartActions';
 
 const ShopContent = () => {
@@ -13,6 +13,9 @@ const ShopContent = () => {
   const fetchState = useSelector(state => state.product?.fetchState);
   const loading = useSelector(state => state.product?.loading);
   const error = useSelector(state => state.product?.error);
+  const hasMore = useSelector(state => state.product?.hasMore);
+  const limit = useSelector(state => state.product?.limit);
+  const offset = useSelector(state => state.product?.offset);
   
   const [sortOption, setSortOption] = useState('');
   const [filterText, setFilterText] = useState('');
@@ -21,6 +24,22 @@ const ShopContent = () => {
   const [fadeOut, setFadeOut] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
   const [addedToCart, setAddedToCart] = useState(null);
+  
+  // Sonsuz kaydırma için gözlemci referansı
+  const observer = useRef();
+  // Son ürün elementi için referans
+  const lastProductElementRef = useCallback(node => {
+    if (loading) return;
+    if (observer.current) observer.current.disconnect();
+    
+    observer.current = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting && hasMore) {
+        dispatch(loadMoreProducts());
+      }
+    }, { threshold: 0.5 });
+    
+    if (node) observer.current.observe(node);
+  }, [loading, hasMore, dispatch]);
   
   // Kategorileri cinsiyete göre ayırma
   const womenCategories = categories.filter(cat => cat.gender === 'k');
@@ -125,24 +144,7 @@ const ShopContent = () => {
 
   // Ürünleri getirme fonksiyonu
   const fetchFilteredProducts = () => {
-    let url = 'products?';
-    
-    // Kategori parametresi
-    if (categoryId) {
-      url += `category=${categoryId}`;
-    }
-    
-    // Filtre parametresi
-    if (filterText) {
-      url += `${categoryId ? '&' : ''}filter=${filterText}`;
-    }
-    
-    // Sıralama parametresi
-    if (sortOption) {
-      url += `${(categoryId || filterText) ? '&' : ''}sort=${sortOption}`;
-    }
-    
-    dispatch(fetchProducts(url));
+    dispatch(fetchProducts(limit, 0, filterText));
   };
   
   // Kategoriler değiştiğinde
@@ -178,7 +180,7 @@ const ShopContent = () => {
   }, [products]);
 
   // Products to display - use sortedProducts if available, otherwise use products
-  const displayProducts = (sortedProducts.length > 0 ? sortedProducts : products).slice(0, 12);
+  const displayProducts = sortedProducts.length > 0 ? sortedProducts : products;
 
   // Sepete ekle işlemi
   const handleAddToCart = (e, product) => {
