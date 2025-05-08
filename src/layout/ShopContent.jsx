@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { ChevronRight, ShoppingCart, Heart, Eye, BarChart2 } from 'lucide-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCategories, fetchProducts } from '../store/actions/productActions';
-import { addToCart } from '../store/actions/cartActions'; // Import cart action
+import { addToCart } from '../store/actions/cartActions';
 
 const ShopContent = () => {
   const dispatch = useDispatch();
@@ -18,9 +18,9 @@ const ShopContent = () => {
   const [filterText, setFilterText] = useState('');
   const [tempFilterText, setTempFilterText] = useState('');
   const [sortedProducts, setSortedProducts] = useState([]);
-  const [isFiltering, setIsFiltering] = useState(false);
   const [fadeOut, setFadeOut] = useState(false);
   const [fadeIn, setFadeIn] = useState(false);
+  const [addedToCart, setAddedToCart] = useState(null);
   
   // Kategorileri cinsiyete göre ayırma
   const womenCategories = categories.filter(cat => cat.gender === 'k');
@@ -180,19 +180,30 @@ const ShopContent = () => {
   // Products to display - use sortedProducts if available, otherwise use products
   const displayProducts = (sortedProducts.length > 0 ? sortedProducts : products).slice(0, 12);
 
-  // Sepete ekle işlemi - GÜNCELLENDI
+  // Sepete ekle işlemi - GELİŞTİRİLDİ
   const handleAddToCart = (e, product) => {
     e.preventDefault(); // Link'in yönlendirmesini engelle
     e.stopPropagation(); // Event yayılımını engelle
+    
+    // Eğer ürünün imageUrl'i yoksa varsayılan bir imageUrl oluştur
+    const imageUrl = product.imageUrl || `/urun${(product.id % 6) + 1}.png`;
     
     // Redux action'ı ile sepete ekleme
     dispatch(addToCart({
       id: product.id,
       name: product.name,
       price: product.price,
-      imageUrl: product.imageUrl || `/urun${(product.id % 6) + 1}.png`,
+      imageUrl: imageUrl,
       quantity: 1
     }));
+    
+    // Sepete eklenen ürünü işaretle (küçük bir bildirim animasyonu için)
+    setAddedToCart(product.id);
+    
+    // 2 saniye sonra işareti kaldır
+    setTimeout(() => {
+      setAddedToCart(null);
+    }, 2000);
   };
 
   if (loading) {
@@ -243,7 +254,7 @@ const ShopContent = () => {
 
       {/* Top Categories Grid */}
       <div className="mb-12">
-        <h2 className="text-3xl font-bold text-[#252B42] mb-6"></h2>
+        <h2 className="text-3xl font-bold text-[#252B42] mb-6">Popüler Kategoriler</h2>
         <div className="flex flex-wrap justify-center gap-4">
           {topCategories.map(category => (
             <Link 
@@ -313,7 +324,7 @@ const ShopContent = () => {
         </div>
       </div>
 
-      {/* Products Grid - GÜNCELLENDI */}
+      {/* Products Grid - GELİŞTİRİLDİ */}
       <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12 relative transition-opacity duration-300 ${fadeOut ? 'opacity-0' : fadeIn ? 'opacity-100' : ''}`}>
         {displayProducts.length === 0 ? (
           <div className="col-span-full text-center py-12 text-gray-500">
@@ -402,13 +413,19 @@ const ShopContent = () => {
                     <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
                   </div>
                   
-                  {/* Sepete Ekle Butonu - GÜNCELLENDI */}
+                  {/* Sepete Ekle Butonu - GELİŞTİRİLDİ */}
                   <button 
                     onClick={(e) => handleAddToCart(e, product)}
-                    className="cursor-pointer w-full py-2 bg-[#23A6F0] text-white rounded flex items-center justify-center gap-2 hover:bg-[#1A8CD8] transition-colors mt-2"
+                    className={`cursor-pointer w-full py-2 transition-all duration-300 ${
+                      addedToCart === product.id 
+                        ? 'bg-green-500 text-white'
+                        : 'bg-[#23A6F0] text-white'
+                    } rounded flex items-center justify-center gap-2 hover:bg-[#1A8CD8]`}
                   >
-                    <ShoppingCart size={16} />
-                    <span>Sepete Ekle</span>
+                    <ShoppingCart size={16} className={addedToCart === product.id ? 'animate-bounce' : ''} />
+                    <span>
+                      {addedToCart === product.id ? 'Sepete Eklendi' : 'Sepete Ekle'}
+                    </span>
                   </button>
                 </div>
               </div>

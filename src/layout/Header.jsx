@@ -11,6 +11,7 @@ import { removeFromCart, updateCartQuantity } from '../store/actions/cartActions
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMoreOpen, setIsMoreOpen] = useState(false);
+  const [cartAnimation, setCartAnimation] = useState(false);
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const Header = () => {
   const cartTotalAmount = useSelector(state => state.cart?.totalAmount || 0);
   
   const [userFromStorage, setUserFromStorage] = useState(null);
+  const [lastCartCount, setLastCartCount] = useState(cartTotalItems);
   
   // Kategorileri gruplandırma fonksiyonu
   const getCategoriesByGender = () => {
@@ -58,6 +60,22 @@ const Header = () => {
       sessionStorage.removeItem('user');
     }
   }, []);
+
+  // Sepet güncellendiğinde animasyon gösterme
+  useEffect(() => {
+    if (cartTotalItems > lastCartCount) {
+      setCartAnimation(true);
+      
+      // Animasyonu 1 saniye sonra kapat
+      const timer = setTimeout(() => {
+        setCartAnimation(false);
+      }, 1000);
+      
+      return () => clearTimeout(timer);
+    }
+    
+    setLastCartCount(cartTotalItems);
+  }, [cartTotalItems, lastCartCount]);
 
   const user = userFromRedux?.name ? userFromRedux : userFromStorage;
   const testUser = { name: "Mustafa Fidan" };
@@ -98,7 +116,7 @@ const Header = () => {
 
   // Sepeti onayla butonu
   const handleCheckout = () => {
-    history.push('/checkout');
+    history.push('/orders');
   };
 
   // Kategorileri gruplandır
@@ -113,11 +131,11 @@ const Header = () => {
           <div className="flex flex-wrap justify-between items-center">
             {/* Contact Info */}
             <div className="flex items-center space-x-4 md:space-x-6">
-              <a href="tel:(225) 555-0118" className="flex items-center gap-1 text-sm">
+              <a href="tel:(225) 555-0118" className="flex items-center gap-1 text-sm hover:text-[#23A6F0] transition-colors">
                 <Phone size={16} />
                 <span>(225) 555-0118</span>
               </a>
-              <a href="mailto:michelle.rivera@example.com" className="flex items-center gap-1 text-sm">
+              <a href="mailto:michelle.rivera@example.com" className="flex items-center gap-1 text-sm hover:text-[#23A6F0] transition-colors">
                 <Mail size={16} />
                 <span>michelle.rivera@example.com</span>
               </a>
@@ -132,10 +150,10 @@ const Header = () => {
             <div className="flex items-center space-x-4">
               <span className="text-sm hidden md:inline">Follow Us :</span>
               <div className="flex space-x-2">
-                <a href="#" className="hover:text-[#23A6F0]"><Instagram size={16} /></a>
-                <a href="#" className="hover:text-[#23A6F0]"><Youtube size={16} /></a>
-                <a href="#" className="hover:text-[#23A6F0]"><Facebook size={16} /></a>
-                <a href="#" className="hover:text-[#23A6F0]"><Twitter size={16} /></a>
+                <a href="#" className="hover:text-[#23A6F0] transition-colors"><Instagram size={16} /></a>
+                <a href="#" className="hover:text-[#23A6F0] transition-colors"><Youtube size={16} /></a>
+                <a href="#" className="hover:text-[#23A6F0] transition-colors"><Facebook size={16} /></a>
+                <a href="#" className="hover:text-[#23A6F0] transition-colors"><Twitter size={16} /></a>
               </div>
             </div>
           </div>
@@ -143,7 +161,7 @@ const Header = () => {
       </div>
       
       {/* Main Navigation */}
-      <div className="bg-white py-4 shadow-sm">
+      <div className="bg-white py-4">
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
             {/* Logo */}
@@ -151,14 +169,14 @@ const Header = () => {
             
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-6">
-              <Link to="/" className={`text-sm font-medium ${location.pathname === '/' ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0]'}`}>Home</Link>
+              <Link to="/" className={`text-sm font-medium ${location.pathname === '/' ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0] transition-colors'}`}>Home</Link>
               
               {/* Shop Dropdown */}
               <Popover className="relative">
                 {({ open, close }) => (
                   <>
                     <Popover.Button className={`flex items-center text-sm font-medium ${
-                      location.pathname.includes('/shop') ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0]'
+                      location.pathname.includes('/shop') ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0] transition-colors'
                     } focus:outline-none`}>
                       <span className='cursor-pointer'>Shop</span>
                       <ChevronDown size={16} className={`ml-1 transition-transform ${open ? 'rotate-180' : ''}`} />
@@ -172,7 +190,7 @@ const Header = () => {
                       leaveFrom="opacity-100 translate-y-0"
                       leaveTo="opacity-0 translate-y-1"
                     >
-                      <Popover.Panel className="absolute z-10 w-96 mt-3 left-0 bg-white rounded-md shadow-md ring-1 ring-gray-300 ring-opacity-5">
+                      <Popover.Panel className="absolute z-10 w-96 mt-3 left-0 bg-white rounded-md shadow-lg ring-1 ring-gray-300 ring-opacity-5">
                         <div className="p-4 grid grid-cols-2 gap-4">
                           {/* Kadın Kategorileri */}
                           <div>
@@ -182,7 +200,7 @@ const Header = () => {
                                 <li key={category.id}>
                                   <Link 
                                     to={`/shop/kadin/${category.title.toLowerCase()}/${category.id}`}
-                                    className="text-[#737373] hover:text-[#23A6F0]"
+                                    className="text-[#737373] hover:text-[#23A6F0] transition-colors block py-1"
                                     onClick={() => close()} // Menüyü kapat
                                   >
                                     {category.title}
@@ -200,7 +218,7 @@ const Header = () => {
                                 <li key={category.id}>
                                   <Link 
                                     to={`/shop/erkek/${category.title.toLowerCase()}/${category.id}`}
-                                    className="text-[#737373] hover:text-[#23A6F0]"
+                                    className="text-[#737373] hover:text-[#23A6F0] transition-colors block py-1"
                                     onClick={() => close()} // Menüyü kapat
                                   >
                                     {category.title}
@@ -216,9 +234,9 @@ const Header = () => {
                 )}
               </Popover>
               
-              <Link to="/about" className={`text-sm font-medium ${location.pathname === '/about' ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0]'}`}>About</Link>
-              <Link to="/blog" className={`text-sm font-medium ${location.pathname === '/blog' ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0]'}`}>Blog</Link>
-              <Link to="/contact" className={`text-sm font-medium ${location.pathname === '/contact' ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0]'}`}>Contact</Link>
+              <Link to="/about" className={`text-sm font-medium ${location.pathname === '/about' ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0] transition-colors'}`}>About</Link>
+              <Link to="/blog" className={`text-sm font-medium ${location.pathname === '/blog' ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0] transition-colors'}`}>Blog</Link>
+              <Link to="/contact" className={`text-sm font-medium ${location.pathname === '/contact' ? 'text-[#23A6F0]' : 'text-[#737373] hover:text-[#23A6F0] transition-colors'}`}>Contact</Link>
               
               {/* More Dropdown */}
               <Popover className="relative">
@@ -227,7 +245,7 @@ const Header = () => {
                     <Popover.Button className={`flex items-center text-sm font-medium ${
                       location.pathname === '/team' || location.pathname === '/pricing' 
                         ? 'text-[#23A6F0]' 
-                        : 'text-[#737373] hover:text-[#23A6F0]'
+                        : 'text-[#737373] hover:text-[#23A6F0] transition-colors'
                     } focus:outline-none`}>
                       <span>More</span>
                       <ChevronDown size={16} className={`ml-1 transition-transform ${open ? 'rotate-180' : ''}`} />
@@ -241,18 +259,18 @@ const Header = () => {
                       leaveFrom="opacity-100 translate-y-0"
                       leaveTo="opacity-0 translate-y-1"
                     >
-                      <Popover.Panel className="absolute z-10 w-40 mt-3 left-0 bg-white rounded-md shadow-md ring-1 ring-gray-300 ring-opacity-5">
+                      <Popover.Panel className="absolute z-10 w-40 mt-3 left-0 bg-white rounded-md shadow-lg ring-1 ring-gray-300 ring-opacity-5">
                         <div className="py-1">
                           <Link 
                             to="/team" 
-                            className={`block px-4 py-2 text-sm ${location.pathname === '/team' ? 'text-[#23A6F0]' : 'text-gray-700 hover:bg-gray-100'}`}
+                            className={`block px-4 py-2 text-sm ${location.pathname === '/team' ? 'text-[#23A6F0]' : 'text-gray-700 hover:bg-gray-100 transition-colors'}`}
                             onClick={() => close()}
                           >
                             Team
                           </Link>
                           <Link 
                             to="/pricing" 
-                            className={`block px-4 py-2 text-sm ${location.pathname === '/pricing' ? 'text-[#23A6F0]' : 'text-gray-700 hover:bg-gray-100'}`}
+                            className={`block px-4 py-2 text-sm ${location.pathname === '/pricing' ? 'text-[#23A6F0]' : 'text-gray-700 hover:bg-gray-100 transition-colors'}`}
                             onClick={() => close()}
                           >
                             Pricing
@@ -287,20 +305,20 @@ const Header = () => {
                         leaveFrom="opacity-100 translate-y-0"
                         leaveTo="opacity-0 translate-y-1"
                       >
-                        <Popover.Panel className="absolute z-50 w-56 mt-3 right-0 bg-white rounded-md shadow-lg ring-1 ring-gray-400 ring-opacity-5 ">
+                        <Popover.Panel className="absolute z-50 w-56 mt-3 right-0 bg-white rounded-md shadow-lg ring-1 ring-gray-400 ring-opacity-5">
                           <div className="p-4">
                             <div className="font-medium text-gray-800 mb-2">{activeUser.name}</div>
                             <div className="border-b border-gray-200 opacity-50 my-2"></div>
                             <div className="py-1">
-                              <Link to="/orders" className="flex items-center px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md" onClick={() => close()}>
+                              <Link to="/orders" className="flex items-center px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors" onClick={() => close()}>
                                 <ShoppingCart size={16} className="mr-2" />
                                 Siparişlerim
                               </Link>
-                              <Link to="/profile" className="flex items-center px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md" onClick={() => close()}>
+                              <Link to="/profile" className="flex items-center px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors" onClick={() => close()}>
                                 <UserCircle size={16} className="mr-2" />
                                 Profile
                               </Link>
-                              <Link to="/settings" className="flex items-center px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md" onClick={() => close()}>
+                              <Link to="/settings" className="flex items-center px-2 py-2 text-sm text-gray-700 hover:bg-gray-100 rounded-md transition-colors" onClick={() => close()}>
                                 <Settings size={16} className="mr-2" />
                                 Settings
                               </Link>
@@ -309,9 +327,9 @@ const Header = () => {
                                   handleLogout();
                                   close();
                                 }}
-                                className="cursor-pointer flex items-center w-full text-left px-2 py-2 text-sm text-red-600 hover:bg-gray-100 rounded-md"
+                                className="cursor-pointer flex items-center w-full text-left px-2 py-2 text-sm text-red-600 hover:bg-red-50 rounded-md transition-colors"
                               >
-                                <LogOut size={16} className="mr-2 " />
+                                <LogOut size={16} className="mr-2" />
                                 Logout
                               </button>
                             </div>
@@ -322,13 +340,13 @@ const Header = () => {
                   )}
                 </Popover>
               ) : (
-                <Link to="/login" className="flex items-center text-[#23A6F0]">
+                <Link to="/login" className="flex items-center text-[#23A6F0] hover:text-[#1A8CD8] transition-colors">
                   <User size={16} className="mr-1" />
                   <span className="text-sm font-medium">Login / Register</span>
                 </Link>
               )}
               
-              <Link to="/search" className="text-[#23A6F0]">
+              <Link to="/search" className="text-[#23A6F0] hover:text-[#1A8CD8] transition-colors">
                 <Search size={16} />
               </Link>
               
@@ -336,10 +354,10 @@ const Header = () => {
               <Popover className="relative">
                 {({ open, close }) => (
                   <>
-                    <Popover.Button className="text-[#23A6F0] relative focus:outline-none">
-                      <ShoppingCart size={16} />
+                    <Popover.Button className="text-[#23A6F0] hover:text-[#1A8CD8] transition-colors relative focus:outline-none">
+                      <ShoppingCart size={16} className={cartAnimation ? 'animate-bounce' : ''} />
                       {cartTotalItems > 0 && (
-                        <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">
+                        <span className={`absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium ${cartAnimation ? 'animate-pulse' : ''}`}>
                           {cartTotalItems}
                         </span>
                       )}
@@ -353,65 +371,81 @@ const Header = () => {
                       leaveFrom="opacity-100 translate-y-0"
                       leaveTo="opacity-0 translate-y-1"
                     >
-                      <Popover.Panel className="absolute z-50 w-72 mt-3 right-0 bg-white rounded-md shadow-lg ring-1 ring-gray-400 ring-opacity-5">
+                      <Popover.Panel className="absolute z-50 w-80 mt-3 right-0 bg-white rounded-md shadow-lg ring-1 ring-gray-400 ring-opacity-5">
                         <div className="p-4">
                           <div className="font-medium text-gray-800 mb-2 flex justify-between items-center">
-                            <span>Sepetim ({cartTotalItems})</span>
-                            <Link to="/cart" className="text-sm text-[#23A6F0] hover:underline" onClick={() => close()}>
+                            <span className="flex items-center gap-2">
+                              <ShoppingCart size={16} />
+                              Sepetim ({cartTotalItems})
+                            </span>
+                            <Link to="/cart" className="text-sm text-[#23A6F0] hover:underline transition-colors" onClick={() => close()}>
                               Sepete Git
                             </Link>
                           </div>
                           
-                          <div className="border-b border-gray-200 opacity-50 my-2"></div>
+                          <div className="border-b border-gray-200 my-2"></div>
                           
                           {/* Sepet Öğeleri */}
-                          <div className="max-h-64 overflow-y-auto py-2">
+                          <div className="max-h-72 overflow-y-auto py-2 space-y-3">
                             {cartItems.length === 0 ? (
-                              <div className="text-center py-4 text-gray-500">
-                                Sepetiniz boş
+                              <div className="text-center py-8 text-gray-500 flex flex-col items-center">
+                                <ShoppingCart size={32} className="text-gray-300 mb-2" />
+                                <p>Sepetiniz boş</p>
+                                <Link 
+                                  to="/shop" 
+                                  className="mt-3 text-sm text-[#23A6F0] hover:underline transition-colors"
+                                  onClick={() => close()}
+                                >
+                                  Alışverişe Başla
+                                </Link>
                               </div>
                             ) : (
                               cartItems.map(item => (
-                                <div key={item.id} className="flex items-center py-2 border-b border-gray-100 last:border-b-0">
+                                <div key={item.id} className="flex items-center py-3 border-b border-gray-100 last:border-b-0 hover:bg-gray-50 transition-colors rounded-md px-2">
                                   <Link to={`/product/${item.id}`} className="flex-shrink-0" onClick={() => close()}>
                                     <img 
                                       src={item.imageUrl} 
                                       alt={item.name} 
-                                      className="w-12 h-16 object-cover rounded"
+                                      className="w-16 h-20 object-cover rounded-md shadow-sm"
                                     />
                                   </Link>
                                   <div className="ml-3 flex-grow">
                                     <Link 
                                       to={`/product/${item.id}`} 
-                                      className="text-sm font-medium text-gray-800 line-clamp-1 hover:text-[#23A6F0]"
+                                      className="text-sm font-medium text-gray-800 line-clamp-1 hover:text-[#23A6F0] transition-colors"
                                       onClick={() => close()}
                                     >
                                       {item.name}
                                     </Link>
-                                    <div className="flex items-center justify-between mt-1">
-                                      <div className="flex items-center">
-                                        <button
-                                          onClick={(e) => handleUpdateQuantity(e, item.id, item.quantity - 1)}
-                                          className="p-1 text-gray-500 hover:text-[#23A6F0]"
-                                        >
-                                          <Minus size={12} />
-                                        </button>
-                                        <span className="px-2 text-sm">{item.quantity}</span>
-                                        <button
-                                          onClick={(e) => handleUpdateQuantity(e, item.id, item.quantity + 1)}
-                                          className="p-1 text-gray-500 hover:text-[#23A6F0]"
-                                        >
-                                          <Plus size={12} />
-                                        </button>
+                                    <div className="mt-2">
+                                      <div className="flex items-center justify-between">
+                                        <div className="flex items-center bg-gray-100 rounded-md overflow-hidden">
+                                          <button
+                                            onClick={(e) => handleUpdateQuantity(e, item.id, item.quantity - 1)}
+                                            className="p-1 text-gray-500 hover:text-[#23A6F0] transition-colors hover:bg-gray-200"
+                                            aria-label="Azalt"
+                                          >
+                                            <Minus size={14} />
+                                          </button>
+                                          <span className="px-3 py-1 text-sm font-medium">{item.quantity}</span>
+                                          <button
+                                            onClick={(e) => handleUpdateQuantity(e, item.id, item.quantity + 1)}
+                                            className="p-1 text-gray-500 hover:text-[#23A6F0] transition-colors hover:bg-gray-200"
+                                            aria-label="Artır"
+                                          >
+                                            <Plus size={14} />
+                                          </button>
+                                        </div>
+                                        <span className="text-sm font-medium text-[#23856D]">${(item.price * item.quantity).toFixed(2)}</span>
                                       </div>
-                                      <span className="text-sm font-medium text-[#23856D]">${(item.price * item.quantity).toFixed(2)}</span>
                                     </div>
                                   </div>
                                   <button
                                     onClick={(e) => handleRemoveFromCart(e, item.id)}
-                                    className="ml-2 text-gray-400 hover:text-red-500"
+                                    className="ml-2 text-gray-400 hover:text-red-500 transition-colors p-1 rounded-full hover:bg-gray-200"
+                                    aria-label="Sepetten Kaldır"
                                   >
-                                    <Trash size={14} />
+                                    <Trash size={16} />
                                   </button>
                                 </div>
                               ))
@@ -421,10 +455,13 @@ const Header = () => {
                           {/* Toplam Tutar */}
                           {cartItems.length > 0 && (
                             <>
-                              <div className="border-t border-gray-200 mt-2 pt-2">
+                              <div className="border-t border-gray-200 mt-2 pt-3">
                                 <div className="flex justify-between items-center font-medium">
-                                  <span className="text-gray-700">Toplam:</span>
-                                  <span className="text-[#23856D]">${cartTotalAmount.toFixed(2)}</span>
+                                  <span className="text-gray-700">Ara Toplam:</span>
+                                  <span className="text-[#23856D] font-bold">${cartTotalAmount.toFixed(2)}</span>
+                                </div>
+                                <div className="text-xs text-gray-500 mt-1">
+                                  Kargo ve vergiler ödeme sayfasında hesaplanacaktır.
                                 </div>
                               </div>
                               
@@ -434,10 +471,20 @@ const Header = () => {
                                   handleCheckout();
                                   close();
                                 }}
-                                className="w-full mt-3 py-2 bg-[#23A6F0] text-white rounded flex items-center justify-center hover:bg-[#1A8CD8] transition-colors"
+                                className="w-full mt-3 py-2.5 bg-[#23A6F0] text-white rounded-md flex items-center justify-center gap-2 hover:bg-[#1A8CD8] transition-colors font-medium shadow-sm"
                               >
-                                Sepeti Onayla
+                                <Check size={16} />
+                                <span>Sepeti Onayla</span>
                               </button>
+                              
+                              <Link
+                                to="/cart"
+                                onClick={() => close()}
+                                className="w-full mt-2 py-2 border border-[#23A6F0] text-[#23A6F0] rounded-md flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-sm"
+                              >
+                                <ShoppingCart size={14} />
+                                <span>Sepeti Görüntüle</span>
+                              </Link>
                             </>
                           )}
                         </div>
@@ -447,9 +494,9 @@ const Header = () => {
                 )}
               </Popover>
               
-              <Link to="/wishlist" className="text-[#23A6F0] relative">
+              <Link to="/wishlist" className="text-[#23A6F0] hover:text-[#1A8CD8] transition-colors relative">
                 <Heart size={16} />
-                <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">1</span>
+                <span className="absolute -top-2 -right-2 bg-[#23A6F0] text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">1</span>
               </Link>
             </div>
             
