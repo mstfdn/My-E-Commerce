@@ -57,7 +57,14 @@ const AppContent = () => {
           <Route path="/shop/:gender/:categoryName/:categoryId">
             <Shop />
           </Route>
-          <Route path="/product/:id">
+          <Route path="/shop/:gender/:categoryName/:categoryId/:productNameSlug/:productId">
+            <ProductDetailPage />
+          </Route>
+          <Route path="/product/:productId">
+            <ProductDetailPage />
+          </Route>
+          {/* Yeni eklenen route - shopta URL'i için */}
+          <Route path="/shopta/:productId">
             <ProductDetailPage />
           </Route>
           <Route path="/contact">

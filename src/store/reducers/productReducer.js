@@ -8,7 +8,10 @@ const initialState = {
   loading: false,
   error: null,
   fetchState: 'NOT_FETCHED',
-  hasMore: true
+  hasMore: true,
+  productDetail: null,
+  productDetailLoading: false,
+  productDetailError: null
 };
 
 const productReducer = (state = initialState, action) => {
@@ -101,6 +104,27 @@ const productReducer = (state = initialState, action) => {
                 (state.offset + state.limit) < action.payload.total
       };
     
+    case 'FETCH_PRODUCT_DETAIL_START':
+      return {
+        ...state,
+        productDetailLoading: true,
+        productDetailError: null
+      };
+    
+    case 'FETCH_PRODUCT_DETAIL_SUCCESS':
+      return {
+        ...state,
+        productDetailLoading: false,
+        productDetail: action.payload
+      };
+    
+    case 'FETCH_PRODUCT_DETAIL_FAILURE':
+      return {
+        ...state,
+        productDetailLoading: false,
+        productDetailError: action.payload
+      };
+      
     default:
       return state;
   }

@@ -105,3 +105,32 @@ export const loadMoreProducts = () => (dispatch, getState) => {
   dispatch({ type: 'LOAD_MORE_PRODUCTS_START' });
   return dispatch(fetchProducts(limit, newOffset, filter));
 };
+
+
+// Ürün detaylarını çekme thunk action'ı
+export const fetchProductDetail = (productId) => async (dispatch) => {
+  try {
+    dispatch({ type: 'FETCH_PRODUCT_DETAIL_START' });
+    
+    const response = await fetch(`https://workintech-fe-ecommerce.onrender.com/products/${productId}`);
+    
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    
+    const data = await response.json();
+    
+    dispatch({ 
+      type: 'FETCH_PRODUCT_DETAIL_SUCCESS',
+      payload: data
+    });
+
+    return data;
+  } catch (error) {
+    dispatch({ 
+      type: 'FETCH_PRODUCT_DETAIL_FAILURE',
+      payload: error.message 
+    });
+    return null;
+  }
+};

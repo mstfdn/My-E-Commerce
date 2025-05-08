@@ -315,15 +315,15 @@ const ShopContent = () => {
             </select>
             <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
               <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
               </svg>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Products Grid - GELİŞTİRİLDİ */}
-      <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12 relative transition-opacity duration-300 ${fadeOut ? 'opacity-0' : fadeIn ? 'opacity-100' : ''}`}>
+      {/* Products Grid - GELİŞİ */}
+      <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 transition-opacity duration-300 ${fadeOut ? 'opacity-0' : fadeIn ? 'opacity-100' : ''}`}>
         {displayProducts.length === 0 ? (
           <div className="col-span-full text-center py-12 text-gray-500">
             <p className="text-xl">Aradığınız kriterlere uygun ürün bulunamadı.</p>
@@ -411,7 +411,7 @@ const ShopContent = () => {
                     <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
                   </div>
                   
-                  {/* Sepete Ekle Butonu - GELİŞTİRİLDİ */}
+                  {/* Sepete Ekle Butonu - GELİŞİ */}
                   <button 
                     onClick={(e) => handleAddToCart(e, product)}
                     className={`cursor-pointer w-full py-2 transition-all duration-300 ${
