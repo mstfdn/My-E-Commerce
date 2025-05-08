@@ -180,7 +180,7 @@ const ShopContent = () => {
   // Products to display - use sortedProducts if available, otherwise use products
   const displayProducts = (sortedProducts.length > 0 ? sortedProducts : products).slice(0, 12);
 
-  // Sepete ekle işlemi - GELİŞTİRİLDİ
+  // Sepete ekle işlemi
   const handleAddToCart = (e, product) => {
     e.preventDefault(); // Link'in yönlendirmesini engelle
     e.stopPropagation(); // Event yayılımını engelle
@@ -199,11 +199,7 @@ const ShopContent = () => {
     
     // Sepete eklenen ürünü işaretle (küçük bir bildirim animasyonu için)
     setAddedToCart(product.id);
-    
-    // 2 saniye sonra işareti kaldır
-    setTimeout(() => {
-      setAddedToCart(null);
-    }, 2000);
+    setTimeout(() => setAddedToCart(null), 1500);
   };
 
   if (loading) {

@@ -3,12 +3,12 @@ import { thunk } from 'redux-thunk'; // Default export yerine named export kulla
 import logger from 'redux-logger';
 import clientReducer from './reducers/clientReducer';
 import productReducer from './reducers/productReducer';
-import shoppingCartReducer from './reducers/shoppingCartReducer';
+import cartReducer from './reducers/cartReducer';
 
 const rootReducer = combineReducers({
   client: clientReducer,
   product: productReducer,
-  shoppingCart: shoppingCartReducer
+  cart: cartReducer
 });
 
 const store = createStore(

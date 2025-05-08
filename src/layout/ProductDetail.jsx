@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Heart, ShoppingCart, Eye } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../store/actions/cartActions';
 
 
 const ProductDetail = ({ productId }) => {
@@ -162,8 +164,11 @@ const ProductDetail = ({ productId }) => {
           
           {/* Action Buttons */}
           <div className="flex flex-wrap gap-3 mt-auto">
-            <button className="bg-[#23A6F0] text-white px-8 py-3 rounded-md hover:bg-blue-600 transition font-medium cursor-pointer">
-              Select Options
+            <button 
+              onClick={handleAddToCart}
+              className="bg-[#23A6F0] text-white px-8 py-3 rounded-md hover:bg-blue-600 transition font-medium cursor-pointer"
+            >
+              Sepete Ekle
             </button>
             <button className="border border-gray-300 p-3 rounded-md hover:bg-gray-100 transition cursor-pointer">
               <Heart size={22} />

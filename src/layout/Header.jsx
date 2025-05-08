@@ -1,6 +1,6 @@
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, Search, ShoppingCart, Heart, Menu, X, ChevronDown, User, Settings, UserCircle, LogOut, Trash, Plus, Minus } from 'lucide-react';
+import { Phone, Mail, Instagram, Youtube, Facebook, Twitter, Search, ShoppingCart, Heart, Menu, X, ChevronDown, User, Settings, UserCircle, LogOut, Trash, Plus, Minus, Check } from 'lucide-react';
 import { Popover, Transition } from '@headlessui/react';
 import { Fragment } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
