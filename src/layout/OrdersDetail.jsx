@@ -438,8 +438,8 @@ const OrdersDetail = () => {
                       </div>
                       
                       {/* Ürün Detayları */}
-                      <div className="p-4 flex items-center">
-                        <div className="flex items-center">
+                      <div className="p-4 flex flex-col sm:flex-row items-start sm:items-center">
+                        <div className="flex items-center mb-4 sm:mb-0">
                           <input 
                             type="checkbox" 
                             className="w-5 h-5 mr-3 cursor-pointer accent-[#23A6F0]" 
@@ -459,7 +459,7 @@ const OrdersDetail = () => {
                           </div>
                         </div>
                         
-                        <div className="flex-grow">
+                        <div className="flex-grow mb-4 sm:mb-0">
                           <h3 className="font-medium text-gray-800 mb-1">{item.product.name}</h3>
                           
                           {/* Ürün Detay Bilgileri */}
@@ -469,8 +469,8 @@ const OrdersDetail = () => {
                         </div>
                         
                         {/* Miktar ve Fiyat */}
-                        <div className="flex items-center">
-                          <div className="flex items-center border border-gray-400 rounded-md mr-6">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center w-full sm:w-auto">
+                          <div className="flex items-center border border-gray-400 rounded-md mb-3 sm:mb-0 sm:mr-6">
                             <button 
                               onClick={() => decreaseCount(index)}
                               className="px-2 py-1 text-gray-600 hover:bg-gray-100"
@@ -486,7 +486,7 @@ const OrdersDetail = () => {
                             </button>
                           </div>
                           
-                          <div className="text-right">
+                          <div className="text-right sm:text-right w-full sm:w-auto">
                             <p className="font-bold text-[#23A6F0] text-lg">
                               {(item.product.price * item.count).toFixed(2)} TL
                             </p>
@@ -504,8 +504,8 @@ const OrdersDetail = () => {
                   
                   {/* Tümünü Seç */}
                   <div className="bg-white rounded-lg shadow-sm border border-gray-100 p-4 mb-6">
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center sm:justify-between">
+                      <div className="flex items-center mb-2 sm:mb-0">
                         <input 
                           type="checkbox" 
                           className="w-5 h-5 mr-2 cursor-pointer accent-[#23A6F0]" 
@@ -584,11 +584,11 @@ const OrdersDetail = () => {
                         value={couponCode}
                         onChange={(e) => setCouponCode(e.target.value)}
                         placeholder="İndirim kodu girin"
-                        className="flex-grow p-2 border border-gray-300 rounded-l focus:outline-none focus:ring-1 focus:ring-[#23A6F0]"
+                        className="flex-grow p-2 border border-gray-300 rounded-l sm:rounded-l focus:outline-none focus:ring-1 focus:ring-[#23A6F0] mb-2 sm:mb-0"
                       />
                       <button 
                         onClick={applyCoupon}
-                        className="bg-[#23A6F0] text-white px-4 py-2 rounded-r hover:bg-blue-600"
+                        className="bg-[#23A6F0] text-white px-4 py-2 rounded-r sm:rounded-r hover:bg-blue-600"
                       >
                         Uygula
                       </button>
