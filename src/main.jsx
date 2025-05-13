@@ -22,21 +22,17 @@ import 'react-toastify/dist/ReactToastify.css'
 import { useEffect } from 'react'
 import { verifyToken, setAuthToken } from './auth/authService'
 import { useDispatch } from 'react-redux'
+import ScrollToTop from './components/ScrollToTop'
 
 const AppContent = () => {
   const dispatch = useDispatch();
   
-  // Uygulama başladığında token kontrolü
   useEffect(() => {
     const checkAuth = async () => {
-      // localStorage'dan token'ı al
       const token = localStorage.getItem('token');
       
       if (token) {
-        // Token'ı axios header'ına ekle
         setAuthToken(token);
-        
-        // Token'ı doğrula
         await verifyToken(dispatch);
       }
     };
@@ -46,6 +42,7 @@ const AppContent = () => {
   
   return (
     <div className="flex flex-col min-h-screen">
+      <ScrollToTop />
       <Header />
       <main className="flex-grow">
         <Switch>

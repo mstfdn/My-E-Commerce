@@ -322,114 +322,85 @@ const ShopContent = () => {
         </div>
       </div>
 
-      {/* Products Grid - GELİŞİ */}
+      {/* Ürün Kartları */}
       <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 transition-opacity duration-300 ${fadeOut ? 'opacity-0' : fadeIn ? 'opacity-100' : ''}`}>
-        {displayProducts.length === 0 ? (
-          <div className="col-span-full text-center py-12 text-gray-500">
-            <p className="text-xl">Aradığınız kriterlere uygun ürün bulunamadı.</p>
-            <button 
-              onClick={() => {
-                setTempFilterText('');
-                setFilterText('');
-                setSortOption('');
-              }}
-              className="mt-4 text-[#23A6F0] hover:underline"
-            >
-              Tüm ürünleri göster
-            </button>
-          </div>
-        ) : (
-          displayProducts.map((product, index) => (
-            <Link 
-              key={product.id} 
-              to={`/product/${product.id}`}
-              className="group transform transition-all duration-300 hover:-translate-y-1 hover:shadow-lg rounded-lg overflow-hidden bg-white relative"
-            >
-              <div className="p-4">
-                <div className="mb-4 relative overflow-hidden flex justify-center items-center rounded-md">
-                  <img 
-                    src={product.imageUrl || `/urun${(index % 6) + 1}.png`}
-                    alt={product.name} 
-                    className="w-[239px] h-[300px] object-cover cursor-pointer transition-transform hover:scale-105"
-                  />
-                  {product.discount && (
-                    <span className="absolute top-2 left-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded">
-                      %{product.discount} İndirim
-                    </span>
-                  )}
-                  
-                  {/* Hızlı Erişim Butonları */}
-                  <div className="absolute right-2 top-2 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button 
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        console.log('Favorilere eklendi:', product.id);
-                      }}
-                      className="bg-white rounded-full p-2 hover:bg-gray-100 transition-colors shadow-md"
-                    >
-                      <Heart size={18} className="text-gray-700" />
-                    </button>
-                    <button 
-                      onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        console.log('Hızlı bakış:', product.id);
-                      }}
-                      className="bg-white rounded-full p-2 hover:bg-gray-100 transition-colors shadow-md"
-                    >
-                      <Eye size={18} className="text-gray-700" />
-                    </button>
-                  </div>
-                </div>
+        {displayProducts.map((product, index) => (
+          <div 
+            key={product.id} 
+            ref={index === displayProducts.length - 1 ? lastProductElementRef : null}
+            className="group relative bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+          >
+            <Link to={`/product/${product.id}`} className="block">
+              <div className="relative overflow-hidden aspect-square">
+                <img 
+                  src={product.imageUrl || `/urun${(product.id % 6) + 1}.png`}
+                  alt={product.name} 
+                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                />
                 
-                <div className="text-center">
-                  <h4 className="text-base font-bold text-[#252B42] mb-2 line-clamp-1">{product.name}</h4>
-                  <p className="text-sm text-[#737373] mb-2">{product.category}</p>
-                  
-                  {/* Product Features */}
-                  <div className="flex justify-center gap-2 mb-2 text-xs text-gray-500">
-                    <span className="flex items-center gap-1">
-                      <BarChart2 size={14} />
-                      <span>{product.rating || 4.5}</span>
-                    </span>
-                    <span>|</span>
-                    <span>Stok: {product.stock || 10}</span>
-                  </div>
-                  
-                  <div className="flex justify-center items-center gap-2">
-                    {product.oldPrice && (
-                      <span className="text-[#BDBDBD] line-through">${product.oldPrice}</span>
-                    )}
-                    <span className="text-[#23856D] font-bold">${product.price}</span>
-                  </div>
-                  
-                  <div className="flex justify-center mt-2 space-x-1 mb-3">
-                    <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#23A6F0]"></span>
-                    <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#2DC071]"></span>
-                    <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#E77C40]"></span>
-                    <span className="cursor-pointer w-4 transition-transform hover:scale-105 h-4 rounded-full bg-[#252B42]"></span>
-                  </div>
-                  
-                  {/* Sepete Ekle Butonu - GELİŞİ */}
+                {/* Mobil için ürün aksiyonları */}
+                <div className="md:hidden absolute top-2 right-2 flex flex-col gap-2">
                   <button 
                     onClick={(e) => handleAddToCart(e, product)}
-                    className={`cursor-pointer w-full py-2 transition-all duration-300 ${
-                      addedToCart === product.id 
-                        ? 'bg-green-500 text-white'
-                        : 'bg-[#23A6F0] text-white'
-                    } rounded flex items-center justify-center gap-2 hover:bg-[#1A8CD8]`}
+                    className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors shadow-lg"
                   >
-                    <ShoppingCart size={16} className={addedToCart === product.id ? 'animate-bounce' : ''} />
-                    <span>
-                      {addedToCart === product.id ? 'Sepete Eklendi' : 'Sepete Ekle'}
-                    </span>
+                    <ShoppingCart size={20} />
                   </button>
+                  <button className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors shadow-lg">
+                    <Heart size={20} />
+                  </button>
+                  <Link 
+                    to={`/product/${product.id}`} 
+                    className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors shadow-lg"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Eye size={20} />
+                  </Link>
+                </div>
+                
+                {/* Desktop için ürün aksiyonları */}
+                <div className="hidden md:flex absolute bottom-0 left-0 right-0 bg-white bg-opacity-90 py-2 px-4 justify-center space-x-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                  <button 
+                    onClick={(e) => handleAddToCart(e, product)}
+                    className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors"
+                  >
+                    <ShoppingCart size={18} />
+                  </button>
+                  <button className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors">
+                    <Heart size={18} />
+                  </button>
+                  <Link 
+                    to={`/product/${product.id}`} 
+                    className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Eye size={18} />
+                  </Link>
+                </div>
+              </div>
+              
+              <div className="p-4">
+                <h3 className="text-lg font-medium text-gray-800 mb-2 group-hover:text-blue-500 transition-colors">
+                  {product.name}
+                </h3>
+                <div className="flex items-center justify-between">
+                  <span className="text-xl font-bold text-gray-900">${product.price.toFixed(2)}</span>
+                  <div className="flex items-center">
+                    <span className="text-yellow-400 mr-1">★</span>
+                    <span className="text-sm text-gray-600">{product.rating}</span>
+                  </div>
                 </div>
               </div>
             </Link>
-          ))
-        )}
+            
+            {/* Sepete Eklendi Bildirimi */}
+            {addedToCart === product.id && (
+              <div className="absolute top-0 right-0 bg-green-500 text-white text-xs py-1 px-2 m-2 rounded animate-bounce">
+                Sepete Eklendi!
+              </div>
+            )}
+          </div>
+        ))}
       </div>
 
       {/* Pagination */}
