@@ -10,6 +10,9 @@ const OrdersDetail = () => {
   // Adım durumu için state 
   const [currentStep, setCurrentStep] = useState(0); // 0: Sepet, 1: Adres, 2: Ödeme 
   
+  // Sipariş tamamlandı durumu için state
+  const [orderCompleted, setOrderCompleted] = useState(false);
+  
   // Adres bilgileri için state 
   const [addressInfo, setAddressInfo] = useState({ 
     fullName: '', 
@@ -49,11 +52,11 @@ const OrdersDetail = () => {
   const totalAmount = cartTotalAmount + shippingCost + shippingDiscount;
   
   // Sepet boşsa ana sayfaya yönlendir 
-  React.useEffect(() => { 
-    if (cartItems.length === 0) { 
-      history.push('/'); 
-    } 
-  }, [cartItems, history]);
+  // React.useEffect(() => { 
+  //   if (cartItems.length === 0) { 
+  //     history.push('/'); 
+  //   } 
+  // }, [cartItems, history]);
   
   // Sepet öğelerini Redux'tan al ve state'e aktar
   useEffect(() => {
@@ -185,10 +188,19 @@ const OrdersDetail = () => {
   
   // Siparişi tamamla fonksiyonu 
   const handleCompleteOrder = () => { 
-    // Burada sipariş tamamlama işlemleri yapılabilir 
-    // Örneğin: API'ye sipariş gönderme, ödeme sayfasına yönlendirme vb. 
-    alert('Siparişiniz başarıyla tamamlandı!'); 
-    history.push('/'); 
+    // Sipariş tamamlandı durumunu true yap
+    setOrderCompleted(true);
+    
+    // Sepeti sıfırla (Redux store'dan)
+    dispatch({ type: 'CLEAR_CART' });
+    
+    // Yerel state'i de temizle
+    setItems([]);
+    
+    // 5 saniye sonra ana sayfaya yönlendir
+    setTimeout(() => {
+      history.push('/');
+    }, 5000);
   };
   
   // Adım göstergeleri 
@@ -376,6 +388,26 @@ const OrdersDetail = () => {
   
   return (
     <div className="container mx-auto px-4 py-8">
+      {/* Sipariş Tamamlandı Animasyonu */}
+      {orderCompleted && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg p-8 max-w-md w-full text-center animate-fade-in">
+            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Check size={40} className="text-green-600" />
+            </div>
+            <h2 className="text-2xl font-bold bg-white text-gray-800 mb-4">Siparişiniz Tamamlandı!</h2>
+            <p className="text-gray-600 mb-6">Siparişiniz başarıyla alındı. Teşekkür ederiz!</p>
+            <p className="text-gray-500 text-sm mb-4">Birkaç saniye içinde ana sayfaya yönlendirileceksiniz...</p>
+            <Link 
+              to="/" 
+              className="inline-block bg-[#23A6F0] text-white px-6 py-3 rounded-md font-medium hover:bg-blue-600 transition"
+            >
+              Ana Sayfaya Dön
+            </Link>
+          </div>
+        </div>
+      )}
+      
       {/* Başlık ve Breadcrumb */}
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-gray-800 mb-4">
