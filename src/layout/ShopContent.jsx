@@ -252,7 +252,7 @@ const ShopContent = () => {
 
       {/* Top Categories Grid */}
       <div className="mb-12">
-        <h2 className="text-3xl font-bold text-[#252B42] mb-6">Popüler Kategoriler</h2>
+        
         <div className="flex flex-wrap justify-center gap-4">
           {topCategories.map(category => (
             <Link 
