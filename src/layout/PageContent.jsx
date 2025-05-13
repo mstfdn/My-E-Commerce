@@ -1,7 +1,35 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ShoppingCart, Heart, Eye } from 'lucide-react';
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../store/actions/cartActions';
+import { useState } from 'react';
 
 const PageContent = () => {
+  const dispatch = useDispatch();
+  const [addedToCart, setAddedToCart] = useState(null);
+
+  // Sepete ekle işlemi
+  const handleAddToCart = (e, product) => {
+    e.preventDefault(); // Link'in yönlendirmesini engelle
+    e.stopPropagation(); // Event yayılımını engelle
+    
+    // Redux action'ı ile sepete ekleme
+    dispatch(addToCart({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      imageUrl: product.imageUrl || `/product${(product.id % 5) + 1}.png`,
+      quantity: 1
+    }));
+    
+    // Eklenen ürünü göster ve 2 saniye sonra kaldır
+    setAddedToCart(product.id);
+    setTimeout(() => {
+      setAddedToCart(null);
+    }, 2000);
+  };
+
   return (
     <div className="container mx-auto px-4 py-10 w-full">
       {/* Hero Section */}
@@ -120,9 +148,54 @@ const PageContent = () => {
         
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {/* Product 1 */}
-          <div className="group">
-            <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-              <img src="/product1.png" alt="Product" className="cursor-pointer transition-transform hover:scale-105 w-[239px] h-[300px] object-cover" />
+          <div className="group relative">
+            <div className="mb-4 relative overflow-hidden">
+              <Link to="/product/1">
+                <img 
+                  src="/product1.png" 
+                  alt="Product" 
+                  className="cursor-pointer transition-transform group-hover:scale-105 w-full h-[300px] object-cover" 
+                />
+              </Link>
+              
+              {/* Mobil için ürün aksiyonları */}
+              <div className="md:hidden absolute top-2 right-2 flex flex-col gap-2">
+                <button 
+                  onClick={(e) => handleAddToCart(e, {id: 1, name: "Graphic Design", price: 6.48, imageUrl: "/product1.png"})}
+                  className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors shadow-lg"
+                >
+                  <ShoppingCart size={20} />
+                </button>
+                <button className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors shadow-lg">
+                  <Heart size={20} />
+                </button>
+                <Link to="/product/1" className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors shadow-lg">
+                  <Eye size={20} />
+                </Link>
+              </div>
+              
+              {/* Desktop için ürün aksiyonları */}
+              <div className="hidden md:flex absolute bottom-0 left-0 right-0 bg-white bg-opacity-90 py-2 px-4 justify-center space-x-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <button 
+                  onClick={(e) => handleAddToCart(e, {id: 1, name: "Graphic Design", price: 6.48, imageUrl: "/product1.png"})}
+                  className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors"
+                >
+                  <ShoppingCart size={18} />
+                </button>
+                <button className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors">
+                  <Heart size={18} />
+                </button>
+                <Link to="/product/1" className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors">
+                  <Eye size={18} />
+                </Link>
+              </div>
+              
+              {/* Sepete Eklendi Bildirimi */}
+              {addedToCart === 1 && (
+                <div className="absolute top-0 right-0 bg-green-500 text-white text-xs py-1 px-2 m-2 rounded animate-bounce">
+                  Sepete Eklendi!
+                </div>
+              )}
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -135,9 +208,38 @@ const PageContent = () => {
           </div>
           
           {/* Product 2 */}
-          <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-              <img src="/product2.png" alt="Product" className="cursor-pointer transition-transform hover:scale-105 w-[239px] h-[300px] object-cover" />
+          <div className="group relative">
+            <div className="mb-4 relative overflow-hidden">
+              <Link to="/product/2">
+                <img 
+                  src="/product2.png" 
+                  alt="Product" 
+                  className="cursor-pointer transition-transform group-hover:scale-105 w-full h-[300px] object-cover" 
+                />
+              </Link>
+              
+              {/* Ürün Aksiyonları */}
+              <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-90 py-2 px-4 flex justify-center space-x-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <button 
+                  onClick={(e) => handleAddToCart(e, {id: 2, name: "Graphic Design", price: 6.48, imageUrl: "/product2.png"})}
+                  className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors"
+                >
+                  <ShoppingCart size={18} />
+                </button>
+                <button className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors">
+                  <Heart size={18} />
+                </button>
+                <Link to="/product/2" className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors">
+                  <Eye size={18} />
+                </Link>
+              </div>
+              
+              {/* Sepete Eklendi Bildirimi */}
+              {addedToCart === 2 && (
+                <div className="absolute top-0 right-0 bg-green-500 text-white text-xs py-1 px-2 m-2 rounded animate-bounce">
+                  Sepete Eklendi!
+                </div>
+              )}
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -150,9 +252,38 @@ const PageContent = () => {
           </div>
           
           {/* Product 3 */}
-          <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-              <img src="/product3.png" alt="Product" className="cursor-pointer transition-transform hover:scale-105 w-[239px] h-[300px] object-cover" />
+          <div className="group relative">
+            <div className="mb-4 relative overflow-hidden">
+              <Link to="/product/3">
+                <img 
+                  src="/product3.png" 
+                  alt="Product" 
+                  className="cursor-pointer transition-transform group-hover:scale-105 w-full h-[300px] object-cover" 
+                />
+              </Link>
+              
+              {/* Ürün Aksiyonları */}
+              <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-90 py-2 px-4 flex justify-center space-x-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <button 
+                  onClick={(e) => handleAddToCart(e, {id: 3, name: "Graphic Design", price: 6.48, imageUrl: "/product3.png"})}
+                  className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors"
+                >
+                  <ShoppingCart size={18} />
+                </button>
+                <button className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors">
+                  <Heart size={18} />
+                </button>
+                <Link to="/product/3" className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors">
+                  <Eye size={18} />
+                </Link>
+              </div>
+              
+              {/* Sepete Eklendi Bildirimi */}
+              {addedToCart === 3 && (
+                <div className="absolute top-0 right-0 bg-green-500 text-white text-xs py-1 px-2 m-2 rounded animate-bounce">
+                  Sepete Eklendi!
+                </div>
+              )}
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -165,9 +296,38 @@ const PageContent = () => {
           </div>
           
           {/* Product 4 */}
-          <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-              <img src="/product4.png" alt="Product" className="cursor-pointer transition-transform hover:scale-105 w-[239px] h-[300px] object-cover" />
+          <div className="group relative">
+            <div className="mb-4 relative overflow-hidden">
+              <Link to="/product/4">
+                <img 
+                  src="/product4.png" 
+                  alt="Product" 
+                  className="cursor-pointer transition-transform group-hover:scale-105 w-full h-[300px] object-cover" 
+                />
+              </Link>
+              
+              {/* Ürün Aksiyonları */}
+              <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-90 py-2 px-4 flex justify-center space-x-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <button 
+                  onClick={(e) => handleAddToCart(e, {id: 4, name: "Graphic Design", price: 6.48, imageUrl: "/product4.png"})}
+                  className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors"
+                >
+                  <ShoppingCart size={18} />
+                </button>
+                <button className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors">
+                  <Heart size={18} />
+                </button>
+                <Link to="/product/4" className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors">
+                  <Eye size={18} />
+                </Link>
+              </div>
+              
+              {/* Sepete Eklendi Bildirimi */}
+              {addedToCart === 4 && (
+                <div className="absolute top-0 right-0 bg-green-500 text-white text-xs py-1 px-2 m-2 rounded animate-bounce">
+                  Sepete Eklendi!
+                </div>
+              )}
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -180,9 +340,38 @@ const PageContent = () => {
           </div>
           
           {/* Product 5 */}
-          <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-              <img src="/product5.png" alt="Product" className="cursor-pointer transition-transform hover:scale-105 w-[239px] h-[300px] object-cover" />
+          <div className="group relative">
+            <div className="mb-4 relative overflow-hidden">
+              <Link to="/product/5">
+                <img 
+                  src="/product5.png" 
+                  alt="Product" 
+                  className="cursor-pointer transition-transform group-hover:scale-105 w-full h-[300px] object-cover" 
+                />
+              </Link>
+              
+              {/* Ürün Aksiyonları */}
+              <div className="absolute bottom-0 left-0 right-0 bg-white bg-opacity-90 py-2 px-4 flex justify-center space-x-2 translate-y-full group-hover:translate-y-0 transition-transform duration-300">
+                <button 
+                  onClick={(e) => handleAddToCart(e, {id: 5, name: "Graphic Design", price: 6.48, imageUrl: "/product5.png"})}
+                  className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors"
+                >
+                  <ShoppingCart size={18} />
+                </button>
+                <button className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors">
+                  <Heart size={18} />
+                </button>
+                <Link to="/product/5" className="bg-white p-2 rounded-full hover:bg-blue-500 hover:text-white transition-colors">
+                  <Eye size={18} />
+                </Link>
+              </div>
+              
+              {/* Sepete Eklendi Bildirimi */}
+              {addedToCart === 5 && (
+                <div className="absolute top-0 right-0 bg-green-500 text-white text-xs py-1 px-2 m-2 rounded animate-bounce">
+                  Sepete Eklendi!
+                </div>
+              )}
             </div>
             <div className="text-center">
               <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
@@ -193,89 +382,10 @@ const PageContent = () => {
               </div>
             </div>
           </div>
-          
-          {/* Product 6 */}
-          <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-              <img src="/product6.png" alt="Product" className="cursor-pointer transition-transform hover:scale-105 w-[239px] h-[300px] object-cover" />
-            </div>
-            <div className="text-center">
-              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-              <p className="text-sm text-[#737373] mb-2">English Department</p>
-              <div className="flex justify-center items-center gap-1">
-                <span className="text-[#BDBDBD] line-through">$16.48</span>
-                <span className="text-[#23856D] font-bold">$6.48</span>
-              </div>
-            </div>
-          </div>
-          
-          {/* Product 7 */}
-          <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-              <img src="/product7.png" alt="Product" className="cursor-pointer transition-transform hover:scale-105 w-[239px] h-[300px] object-cover" />
-            </div>
-            <div className="text-center">
-              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-              <p className="text-sm text-[#737373] mb-2">English Department</p>
-              <div className="flex justify-center items-center gap-1">
-                <span className="text-[#BDBDBD] line-through">$16.48</span>
-                <span className="text-[#23856D] font-bold">$6.48</span>
-              </div>
-            </div>
-          </div>
-          
-          {/* Product 8 */}
-          <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-              <img src="/product8.png" alt="Product" className="cursor-pointer transition-transform hover:scale-105 w-[239px] h-[300px] object-cover" />
-            </div>
-            <div className="text-center">
-              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-              <p className="text-sm text-[#737373] mb-2">English Department</p>
-              <div className="flex justify-center items-center gap-1">
-                <span className="text-[#BDBDBD] line-through">$16.48</span>
-                <span className="text-[#23856D] font-bold">$6.48</span>
-              </div>
-            </div>
-          </div>
-          
-          {/* Product 9 */}
-          <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-              <img src="/product9.png" alt="Product" className="cursor-pointer transition-transform hover:scale-105 w-[239px] h-[300px] object-cover" />
-            </div>
-            <div className="text-center">
-              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-              <p className="text-sm text-[#737373] mb-2">English Department</p>
-              <div className="flex justify-center items-center gap-1">
-                <span className="text-[#BDBDBD] line-through">$16.48</span>
-                <span className="text-[#23856D] font-bold">$6.48</span>
-              </div>
-            </div>
-          </div>
-          
-          {/* Product 10 */}
-          <div className="group">
-          <div className="mb-4 relative overflow-hidden flex justify-center items-center">
-              <img src="/product10.png" alt="Product" className="cursor-pointer transition-transform hover:scale-105 w-[239px] h-[300px] object-cover" />
-            </div>
-            <div className="text-center">
-              <h4 className="text-base font-bold text-[#252B42] mb-2">Graphic Design</h4>
-              <p className="text-sm text-[#737373] mb-2">English Department</p>
-              <div className="flex justify-center items-center gap-1">
-                <span className="text-[#BDBDBD] line-through">$16.48</span>
-                <span className="text-[#23856D] font-bold">$6.48</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-        <div className="flex justify-center mt-12">
-          <button className="border-2 border-[#23A6F0] cursor-pointer text-[#23A6F0] font-medium py-3 px-8 rounded-md hover:bg-[#23A6F0] hover:text-white transition duration-300">
-            LOAD MORE PRODUCTS
-          </button>
         </div>
       </div>
+      
+      
       {/* We Love What We Do Section */}
       <div className="py-16 bg-white">
         <div className="container mx-auto px-4">
