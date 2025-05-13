@@ -16,6 +16,7 @@ import AboutDetail from './layout/AboutDetail'
 import Pricing from './pages/Pricing'
 import SignUp from './pages/SignUp'
 import Login from './pages/Login'
+import Orders from './pages/Orders'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 import { useEffect } from 'react'
@@ -90,6 +91,9 @@ const AppContent = () => {
           </Route>
           <Route path="/login">
             <Login />
+          </Route>
+          <Route path="/orders">
+            <Orders />
           </Route>
         </Switch>
       </main>

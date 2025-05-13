@@ -371,14 +371,14 @@ const Header = () => {
                       leaveFrom="opacity-100 translate-y-0"
                       leaveTo="opacity-0 translate-y-1"
                     >
-                      <Popover.Panel className="absolute z-50 w-80 mt-3 right-0 bg-white rounded-md shadow-lg ring-1 ring-gray-400 ring-opacity-5">
+                      <Popover.Panel className="absolute z-50 w-80 mt-4 -right-15 opacity-95 bg-white rounded-md shadow-lg ring-1 ring-gray-400 ring-opacity-5">
                         <div className="p-4">
                           <div className="font-medium text-gray-800 mb-2 flex justify-between items-center">
                             <span className="flex items-center gap-2">
                               <ShoppingCart size={16} />
                               Sepetim ({cartTotalItems})
                             </span>
-                            <Link to="/cart" className="text-sm text-[#23A6F0] hover:underline transition-colors" onClick={() => close()}>
+                            <Link to="/orders" className="text-sm text-[#23A6F0] hover:underline transition-colors" onClick={() => close()}>
                               Sepete Git
                             </Link>
                           </div>
@@ -478,7 +478,7 @@ const Header = () => {
                               </button>
                               
                               <Link
-                                to="/cart"
+                                to="/orders"
                                 onClick={() => close()}
                                 className="w-full mt-2 py-2 border border-[#23A6F0] text-[#23A6F0] rounded-md flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors text-sm"
                               >
