@@ -390,7 +390,7 @@ const OrdersDetail = () => {
     <div className="container mx-auto px-4 py-8">
       {/* Sipariş Tamamlandı Animasyonu */}
       {orderCompleted && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-8 max-w-md w-full text-center animate-fade-in">
             <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <Check size={40} className="text-green-600" />
