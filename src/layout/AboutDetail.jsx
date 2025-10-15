@@ -144,10 +144,10 @@ const AboutDetail = () => {
         </div>
         {/* Team Member 3 */}
         <div className="bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-lg cursor-pointer transition-transform duration-300 group-hover:scale-110">
-              <img src="/esram.jpeg" alt="Team Member" className="w-full h-64 object-cover" />
+              <img src="/kedy.jpg" alt="Team Member" className="w-full h-64 object-cover" />
               <div className="p-6 text-center">
-                <h4 className="text-lg font-bold text-[#252B42]">Esra Fidan</h4>
-                <p className="text-[#737373] text-sm mb-4">Graphic Designer / Full-Time Lover</p>
+                <h4 className="text-lg font-bold text-[#252B42]">Kedy</h4>
+                <p className="text-[#737373] text-sm mb-4">Miuw</p>
                 <div className="flex justify-center space-x-4">
                   <a href="#" className="text-[#23A6F0] hover:text-blue-700">
                     <Facebook size={20} />
